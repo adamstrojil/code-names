@@ -1,11 +1,10 @@
-import React from 'react';
-import { GameVariant } from './types';
+import React from "react";
+import { GameVariant } from "./types";
 
 type Props = {
-  toggleMode: () => void
-  gameMode: GameVariant
-}
-
+  toggleMode: () => void;
+  gameMode: GameVariant;
+};
 
 const style = {
   width: "100vw",
@@ -13,12 +12,17 @@ const style = {
   display: "flex",
   // alignItems: "center",
   // justifyContent: "center",
-  marginBottom: "1vh"
-}
-
+  marginBottom: "1vh",
+};
 
 export function TopBar({ toggleMode, gameMode }: Props) {
-  const label = `Switch to ${gameMode === 'single' ? 'mirrored' : 'single'} mode`
+  const label = `Switch to ${
+    gameMode === "single" ? "mirrored" : "single"
+  } mode`;
 
-  return <div style={style}><button onClick={toggleMode}>{label}</button></div>
+  return (
+    <div style={style}>
+      <button onClick={toggleMode}>{label}</button>
+    </div>
+  );
 }
