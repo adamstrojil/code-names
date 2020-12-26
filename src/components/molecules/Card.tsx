@@ -1,35 +1,34 @@
 import React, { useState } from "react";
-import { CardRole, GameVariant } from "./types";
-import { mapRoleToStyles } from "./utils";
-import { Word } from "./Word";
+
+import { CardRole, GameVariant } from "../../types";
+import { mapRoleToStyles } from "../../lib/utils";
+import { Word } from "../atoms";
 
 type Props = {
   word: string;
   variant: GameVariant;
   cardRole: CardRole;
-  // roleRevealed?: boolean //fixme
 };
 
 const styleOuter = {
   height: "15vh",
   width: "18vw",
-  minWidth: "180px",
   backgroundColor: "#f1dbba",
   display: "flex",
   flexDirection: "column" as "column", //wtf
   alignItems: "center",
   justifyContent: "center",
   margin: "auto",
-  border: "1px solid black",
   borderRadius: "5px",
   cursor: "pointer",
+  boxShadow:" 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
 };
 
 const styleInner = {
   width: "calc(100% - 28px)",
   height: "calc(100% - 28px)",
   display: "flex",
-  flexDirection: "column" as "column", //wtf
+  flexDirection: "column" as "column",
   alignItems: "center",
   justifyContent: "center",
   margin: "5px",

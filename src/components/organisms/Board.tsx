@@ -1,6 +1,7 @@
 import React from "react";
-import { Card } from "./Card";
-import { GameVariant, WordCard } from "./types";
+
+import { GameVariant, WordCard } from "../../types";
+import { Card } from "../molecules";
 
 type Props = {
   words: Array<WordCard>;
@@ -13,8 +14,8 @@ const style = {
   backgroundColor: "white",
   fontFamily: "tahoma",
   fontWeight: "bolder" as "bolder",
-  paddingRight: "16px",
-  paddingLeft: "16px",
+  paddingRight: "1vw",
+  paddingLeft: "1vw",
 };
 
 export function Board({ words, gameVariant }: Props) {
