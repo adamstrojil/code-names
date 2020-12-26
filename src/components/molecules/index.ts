@@ -1,2 +1,2 @@
-export { Card } from './Card'
-export { GameKeyMap } from './GameKeyMap' 
+export { Card } from "./Card";
+export { GameMap } from "./GameMap";

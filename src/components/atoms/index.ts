@@ -1,2 +1,2 @@
-export { MapField } from './MapField'
-export { Word } from './Word' 
+export { GameMapField } from "./GameMapField";
+export { Word } from "./Word";

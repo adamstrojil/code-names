@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 
 import { WordCard } from "../../types";
-import { MapField } from "../atoms";
+import { GameMapField } from "../atoms";
 
 type Props = {
   wordsForRound: Array<WordCard>;
@@ -21,12 +21,12 @@ const mapStyle = {
   boxShadow: "0 0 0 5px #bca785",
 };
 
-export function GameKeyMap({ wordsForRound }: Props) {
-
+export function GameMap({ wordsForRound }: Props) {
   const map = (
     <div style={mapStyle}>
-      {wordsForRound.map(({ role }, index) => <MapField key={index.toString()} role={role} />
-      )}
+      {wordsForRound.map(({ role }, index) => (
+        <GameMapField key={index.toString()} role={role} />
+      ))}
     </div>
   );
 

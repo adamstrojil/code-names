@@ -20,10 +20,10 @@ const fieldStyle = {
   borderRadius: "6px",
 };
 
-export function MapField({ role }: Props) {
+export function GameMapField({ role }: Props) {
   return (
     <div style={{ ...fieldStyle, ...mapRoleToStyles(role) }}>
       {mapRoleToSign[role]}
     </div>
-  )
+  );
 }
