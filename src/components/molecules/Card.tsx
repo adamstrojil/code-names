@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
-import { CardRole, GameVariant } from "../../types";
+import { CardRole } from "../../types";
 import { mapRoleToStyles } from "../../lib/utils";
 import { Word } from "../atoms";
+import { GameContext } from "../../context/GameContext";
 
 type Props = {
   word: string;
-  variant: GameVariant;
   cardRole: CardRole;
 };
 
@@ -49,10 +49,11 @@ const hrStyle = {
   borderBottom: "0px",
 };
 
-export function Card({ word, variant, cardRole = "neutral" }: Props) {
-  const displayMirrored = variant === "mirrored";
-
+export function Card({ word, cardRole = "neutral" }: Props) {
   const [roleRevealed, setRoleRevealed] = useState<boolean>(false);
+  const { gameVariant } = useContext(GameContext).gameState
+
+  const displayMirrored = gameVariant === "mirrored";
 
   return (
     <div

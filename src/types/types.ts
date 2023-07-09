@@ -4,7 +4,7 @@ export type CardRole = TeamColor | "neutral" | "black";
 
 export type GameVariant = "single" | "mirrored";
 
-export type Language = "EN" | "CZE";
+export type Language = "EN" | "CZE" | "TR";
 
 export type WordCard = {
   word: string;

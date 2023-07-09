@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import { GameVariant, Language, WordCard } from "../../types";
+import { Language, WordCard } from "../../types";
 import { mapLanguageToWordBank } from "../../lib/utils";
+import { GameContext } from "../../context/GameContext";
 import { Board } from "../organisms";
 import { GameMap } from "../molecules";
 
@@ -15,7 +16,6 @@ const assignRoles = (words: Array<string>): Array<WordCard> => {
   const assigned = words.map((word, index) => {
     return {
       word,
-      roleRevealed: false,
       role:
         index <= 8
           ? ("red" as "red")
@@ -45,7 +45,10 @@ const buttonStyle = {
 };
 
 export function App() {
-  const [gameMode, setGameMode] = useState<GameVariant>("single");
+  const {
+    updateContext,
+    gameState: { gameVariant },
+  } = useContext(GameContext);
   const [language, setLanguage] = useState<Language>("CZE");
   const [words, setWords] = useState<any>(
     assignRoles(get25RandomWords(mapLanguageToWordBank[language]))
@@ -63,19 +66,22 @@ export function App() {
   };
 
   const toggleMode = () =>
-    gameMode === "single" ? setGameMode("mirrored") : setGameMode("single");
+    gameVariant === "single"
+      ? updateContext({ gameVariant: "mirrored" })
+      : updateContext({ gameVariant: "single" });
+
   const toggleLanguage = () => {
     language === "CZE" ? setLanguage("EN") : setLanguage("CZE");
   };
 
   const modeButtonLabel = `${
-    gameMode === "single" ? "Mirrored" : "Single"
+    gameVariant === "single" ? "Mirrored" : "Single"
   } mode`;
   const languageButtonLabel = `${language === "CZE" ? "EN" : "CZE"} language`;
 
   return (
     <>
-      <Board words={words} gameVariant={gameMode} />
+      <Board words={words} />
       <div
         style={{
           display: "flex",

@@ -4,10 +4,13 @@ import ReactDOM from "react-dom";
 import { App } from "./components/pages";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import { GameContext, DEFAULT_CONTEXT,GameContextProvider } from "./context/GameContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GameContextProvider>
+      <App />
+    </GameContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
