@@ -1,10 +1,8 @@
-import React from "react";
-
-import { WordCard } from "../../types";
+import { CardRole } from "../../types";
 import { GameMapField } from "../atoms";
 
 type Props = {
-  wordsForRound: Array<WordCard>;
+  rolesForRound: Array<CardRole>;
 };
 
 const mapStyle = {
@@ -21,11 +19,12 @@ const mapStyle = {
   boxShadow: "0 0 0 5px #bca785",
 };
 
-export function GameMap({ wordsForRound }: Props) {
+export function GameMap({ rolesForRound }: Props) {
+  console.log("rolesForRound: ", rolesForRound);
   const map = (
     <div style={mapStyle}>
-      {wordsForRound.map(({ role }, index) => (
-        <GameMapField key={index.toString()} role={role} />
+      {rolesForRound.map((role, index) => (
+        <GameMapField key={index} role={role} />
       ))}
     </div>
   );

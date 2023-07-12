@@ -1,35 +1,35 @@
-import React, { Context, createContext, useState } from "react";
+import { Context, createContext, useState } from "react";
 import { GameState } from "../types";
 
 const DEFAULT_STATE: GameState = {
   theme: "light",
-  language: "CZE",
+  language: "english",
   startingColor: "red",
   gameVariant: "single",
 };
 
 type GameContext = {
-  gameState: GameState,
-  updateContext(changes: Partial<GameState>): void,
-}
+  gameState: GameState;
+  updateContext(changes: Partial<GameState>): void;
+};
 
-export const GameContext: Context<any> = createContext(undefined);
-const { Provider } = GameContext
+export const GameContext: Context<GameContext> = createContext(
+  (undefined as unknown) as GameContext
+); //TODO fix this type mess pls
+const { Provider } = GameContext;
 
 export function GameContextProvider(props: any) {
-  
-  const updateContext = (changes: any) => {
-    setContextValue({...contextValue, gameState: {...contextValue.gameState, ...changes}})
-  }
-  
+  const updateContext = (changes: Partial<GameState>) => {
+    setContextValue((contextValue) => ({
+      ...contextValue,
+      gameState: { ...contextValue.gameState, ...changes },
+    }));
+  };
+
   const [contextValue, setContextValue] = useState<GameContext>({
     gameState: DEFAULT_STATE,
-    updateContext
-  })
+    updateContext,
+  });
 
-  return (
-    <Provider value={contextValue}>
-      {props.children}
-    </Provider>
-  )
+  return <Provider value={contextValue}>{props.children}</Provider>;
 }

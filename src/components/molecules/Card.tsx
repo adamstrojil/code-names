@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 
-import { CardRole } from "../../types";
+import { CardRole, Word as WordType } from "../../types";
 import { mapRoleToStyles } from "../../lib/utils";
 import { Word } from "../atoms";
 import { GameContext } from "../../context/GameContext";
 
 type Props = {
-  word: string;
+  word: WordType;
   cardRole: CardRole;
 };
 
@@ -51,9 +51,10 @@ const hrStyle = {
 
 export function Card({ word, cardRole = "neutral" }: Props) {
   const [roleRevealed, setRoleRevealed] = useState<boolean>(false);
-  const { gameVariant } = useContext(GameContext).gameState
+  const { gameVariant, language } = useContext(GameContext).gameState;
 
   const displayMirrored = gameVariant === "mirrored";
+  const displayDuolingo = gameVariant === "duolingo";
 
   return (
     <div
@@ -66,14 +67,15 @@ export function Card({ word, cardRole = "neutral" }: Props) {
       {displayMirrored ? (
         <div style={styleInner}>
           <div style={styleMirrored}>
-            <Word word={word} />
+            <Word word={word[language]} />
           </div>
           <hr style={hrStyle} />
-          <Word word={word} showBackground={!roleRevealed} />
+          <Word word={word[language]} showBackground={!roleRevealed} />
         </div>
       ) : (
         <div style={styleInner}>
-          <Word word={word} showBackground={!roleRevealed} />
+          <Word word={word[language]} showBackground={!roleRevealed} />
+          {displayDuolingo && word.turkish}
         </div>
       )}
     </div>

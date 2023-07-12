@@ -1,14 +1,20 @@
 export type TeamColor = "blue" | "red";
 
+export type Optional<T> = T | null;
+
 export type CardRole = TeamColor | "neutral" | "black";
 
-export type GameVariant = "single" | "mirrored";
+export type GameVariant = "single" | "mirrored" | "duolingo";
 
-export type Language = "EN" | "CZE" | "TR";
+export type Language = "english" | "czech" | "turkish";
 
 export type WordCard = {
-  word: string;
+  word: Word;
   role: CardRole;
+};
+
+export type Word = {
+  [key in Language]: string;
 };
 
 export type Theme = "light" | "dark";

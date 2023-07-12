@@ -1,6 +1,4 @@
-import React from "react";
-
-import { GameVariant, WordCard } from "../../types";
+import { WordCard } from "../../types";
 import { Card } from "../molecules";
 
 type Props = {
@@ -11,7 +9,7 @@ const style = {
   display: "flex",
   flexWrap: "wrap" as "wrap",
   height: "100vh",
-  backgroundColor: "white",
+  backgroundColor: "white", 
   fontFamily: "tahoma",
   fontWeight: "bolder" as const,
   paddingRight: "1vw",
@@ -21,8 +19,8 @@ const style = {
 export function Board({ words }: Props) {
   return (
     <div style={style}>
-      {words.map(({ word, role }, index) => (
-        <Card key={word + index} word={word} cardRole={role} />
+      {words.map(({ word, role }) => (
+        <Card key={word.english} word={word} cardRole={role} />
       ))}
     </div>
   );

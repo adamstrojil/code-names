@@ -1,5 +1,4 @@
-import { CardRole, Language } from "../types/types";
-import { WORD_BANK_EN, WORD_BANK_CZE, WORD_BANK_TR } from "../WordBank";
+import { CardRole } from "../types/types";
 
 export const mapRoleToStyles = (role: CardRole) => {
   const styles = {
@@ -10,24 +9,6 @@ export const mapRoleToStyles = (role: CardRole) => {
   };
   return styles[role];
 };
-
-export const mapLanguageToWordBank: { [key in Language]: Array<string> } = {
-  EN: WORD_BANK_EN,
-  CZE: WORD_BANK_CZE,
-  TR: WORD_BANK_TR,
-};
-
-// export const buildDB = () => {
-//   console.log("WORD_BANK_CZE", WORD_BANK_CZE);
-//   return WORD_BANK_EN.map((word, index) => {
-//     return {
-//       default: word,
-//       english: word,
-//       turkish: WORD_BANK_TR[index],
-//       czech: WORD_BANK_CZE[index],
-//     };
-//   });
-// };
 
 export const mapRoleToSign: { [key in CardRole]: string } = {
   black: "💀",
