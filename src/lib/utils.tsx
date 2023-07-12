@@ -16,3 +16,7 @@ export const mapRoleToSign: { [key in CardRole]: string } = {
   neutral: "",
   blue: "○",
 };
+
+export const parseRolesFromCSVString = (text: string): Array<CardRole> => {
+  return text.split(",") as Array<CardRole>;
+};

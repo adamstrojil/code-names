@@ -1,5 +1,3 @@
-import React from "react";
-
 import { mapRoleToSign, mapRoleToStyles } from "../../lib/utils";
 import { CardRole } from "../../types";
 

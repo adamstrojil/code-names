@@ -25,3 +25,5 @@ export type GameState = {
   gameVariant: GameVariant;
   startingColor: TeamColor;
 };
+
+export type ButtonVariant = "normal" | "big"

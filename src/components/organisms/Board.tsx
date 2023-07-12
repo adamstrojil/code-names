@@ -19,8 +19,8 @@ const style = {
 export function Board({ words }: Props) {
   return (
     <div style={style}>
-      {words.map(({ word, role }) => (
-        <Card key={word.english} word={word} cardRole={role} />
+      {words.map(({ word, role }, index) => (
+        <Card key={word.english + index} word={word} cardRole={role} />
       ))}
     </div>
   );

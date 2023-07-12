@@ -60,7 +60,9 @@ export function Card({ word, cardRole = "neutral" }: Props) {
     <div
       style={{
         ...styleOuter,
-        ...(roleRevealed ? mapRoleToStyles(cardRole) : {}),
+        ...(roleRevealed
+          ? { ...mapRoleToStyles(cardRole), color: "rgba(0,0,0,0.3)" }
+          : {}),
       }}
       onClick={() => setRoleRevealed(true)}
     >

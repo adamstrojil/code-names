@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 
-import { CardRole, Language, Word, WordCard } from "../../types";
+import { CardRole, Word, WordCard } from "../../types";
 import { GameContext } from "../../context/GameContext";
 import { Board } from "../organisms";
 import { WORD_BANK } from "../../WordBank";
@@ -62,44 +62,57 @@ export function App() {
   return (
     <>
       {mode === "home" && (
-        <Button onClick={() => setMode("board")}>Board Cards🕵🏼‍♂️</Button>
-      )}
-      {mode === "home" && (
-        <Button onClick={() => setMode("map")}>Command Map 🎖️</Button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          <h1>CODE NAMES</h1>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            <Button variant="big" onClick={() => setMode("board")}>
+              Board
+              <img
+                alt="board"
+                src="../../board.png"
+                style={{ width: "100px" }}
+              />
+            </Button>
+            <Button variant="big" onClick={() => setMode("map")}>
+              Map
+              <img alt="map" src="../../map.png" style={{ width: "100px" }} />
+            </Button>
+          </div>
+        </div>
       )}
       {mode === "board" && (
         <>
           <Board words={words} />
-          {/* <div
+          <div
             style={{
+              marginTop: "2em",
               display: "flex",
               justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                marginBottom: "1em",
-                marginTop: "3em",
-              }}
-            > */}
-          <LanguageSelect
-            onSelected={(language) => updateContext({ language })}
-            selectedLanguage={language}
-          />
-
-          <Button onClick={setNewWords}>New Game</Button>
-          <Button onClick={toggleMode}>{modeButtonLabel}</Button>
-          <Button onClick={() => updateContext({ gameVariant: "duolingo" })}>
-            {"duolingo"}
-          </Button>
-          <Button onClick={() => setMode("home")}>Back to main page</Button>
-          {/* </div>
-          </div> */}
+            <Button onClick={setNewWords}>New Game</Button>
+            <LanguageSelect
+              onSelected={(language) => updateContext({ language })}
+              selectedLanguage={language}
+            />
+            <Button onClick={toggleMode}>{modeButtonLabel}</Button>
+            <Button onClick={() => updateContext({ gameVariant: "duolingo" })}>
+              Duolingo
+            </Button>
+            <Button onClick={() => setMode("home")}>Back to main page</Button>
+          </div>
           <div
             style={{
               display: "flex",
@@ -114,7 +127,7 @@ export function App() {
       )}
       {mode === "map" && (
         <>
-          <Button onClick={() => setMode("home")}>Home</Button>
+          <Button onClick={() => setMode("home")}>Back to main page</Button>
           <Commander />
         </>
       )}
