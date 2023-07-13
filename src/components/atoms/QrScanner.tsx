@@ -8,14 +8,10 @@ export function QrScanner({ onScanResult }: Props) {
   return (
     <QrReader
       scanDelay={500}
-      onResult={(result, error) => {
+      onResult={(result) => {
         if (!!result) {
           onScanResult(result.getText());
         }
-
-        // if (!!error) {
-        //   handleError(error);
-        // }
       }}
       constraints={{ facingMode: "environment" }}
     />

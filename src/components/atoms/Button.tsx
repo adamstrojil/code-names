@@ -15,8 +15,8 @@ const baseStyle = {
   cursor: "pointer",
   outline: "none",
 };
- 
-const mapVariantToStyle = {
+
+const mapVariantToStyle: { [key in ButtonVariant]: {} } = {
   normal: {
     ...baseStyle,
     padding: "16px 16px",
@@ -27,17 +27,17 @@ const mapVariantToStyle = {
   },
   big: {
     ...baseStyle,
-    height: "150px",
-    width: "150px",
+    height: "200px",
+    width: "200px",
     marginRight: "10px",
     display: "flex",
     flexDirection: "column" as const,
     alignItems: "center",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
   },
 };
 
-export function Button({ children, variant = "normal", onClick }: Props) {
+export function Button({ variant = "normal", children, onClick }: Props) {
   return (
     <button onClick={onClick} style={mapVariantToStyle[variant]}>
       {children}

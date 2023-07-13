@@ -1,14 +1,15 @@
-import { useState } from "react";
-
+import { useContext, useState } from "react";
 import { Optional } from "../../types";
-import { GameMap } from "../molecules";
-import { QrScanner } from "../atoms/QrScanner";
-import { Button } from "../atoms/Button";
-import { parseRolesFromCSVString } from "../../lib/utils";
 
-export function Commander() {
+import { Button, QrScanner } from "../atoms";
+import { parseRolesFromCSVString } from "../../lib/utils";
+import { GameMap } from "../molecules";
+import { GameContext } from "../../context/GameContext";
+
+export function MapPage() {
   const [scannedText, setScannedText] = useState<Optional<string>>(null);
   const [isMapRevealed, setIsMapRevealed] = useState<boolean>(false);
+  const { updateContext } = useContext(GameContext);
 
   return (
     <div style={{ display: "grid", justifyContent: "center" }}>
@@ -40,6 +41,9 @@ export function Commander() {
           <QrScanner onScanResult={setScannedText} />
         </>
       )}
+      <Button onClick={() => updateContext({ page: "mainMenu" })}>
+        Back to main menu
+      </Button>
     </div>
   );
 }

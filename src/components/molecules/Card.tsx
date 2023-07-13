@@ -50,7 +50,7 @@ const hrStyle = {
 };
 
 export function Card({ word, cardRole = "neutral" }: Props) {
-  const [roleRevealed, setRoleRevealed] = useState<boolean>(false);
+  const [isroleRevealed, setIsRoleRevealed] = useState(false);
   const { gameVariant, language } = useContext(GameContext).gameState;
 
   const displayMirrored = gameVariant === "mirrored";
@@ -60,11 +60,11 @@ export function Card({ word, cardRole = "neutral" }: Props) {
     <div
       style={{
         ...styleOuter,
-        ...(roleRevealed
+        ...(isroleRevealed
           ? { ...mapRoleToStyles(cardRole), color: "rgba(0,0,0,0.3)" }
           : {}),
       }}
-      onClick={() => setRoleRevealed(true)}
+      onClick={() => setIsRoleRevealed(true)}
     >
       {displayMirrored ? (
         <div style={styleInner}>
@@ -72,11 +72,11 @@ export function Card({ word, cardRole = "neutral" }: Props) {
             <Word word={word[language]} />
           </div>
           <hr style={hrStyle} />
-          <Word word={word[language]} showBackground={!roleRevealed} />
+          <Word word={word[language]} showBackground={!isroleRevealed} />
         </div>
       ) : (
         <div style={styleInner}>
-          <Word word={word[language]} showBackground={!roleRevealed} />
+          <Word word={word[language]} showBackground={!isroleRevealed} />
           {displayDuolingo && word.turkish}
         </div>
       )}
