@@ -24,9 +24,4 @@ export type GameState = {
   language: Language;
   gameVariant: GameVariant;
   startingColor: TeamColor;
-  page: Page;
 };
-
-export type ButtonVariant = "normal" | "big"
-
-export type Page = "board" | "mainMenu" | "map"

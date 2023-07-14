@@ -11,7 +11,7 @@ type Props<T> = {
 
 const style = {
   borderRadius: "5px",
-  backgroundColor: "white",
+  backgroundColor: "#efefef",
   color: "black",
   border: "none",
   textAlign: "center" as "center",
@@ -19,7 +19,6 @@ const style = {
   fontSize: "16px",
   margin: "4px 2px 16px 2px",
   cursor: "pointer",
-  outline: "none",
 };
 
 export function Select<T extends string>({
@@ -36,7 +35,9 @@ export function Select<T extends string>({
       }}
     >
       {options.map(({ value, label }) => (
-        <option value={value}>{label}</option>
+        <option key={value} value={value}>
+          {label}
+        </option>
       ))}
     </select>
   );

@@ -77,7 +77,7 @@ export function Card({ word, cardRole = "neutral" }: Props) {
       ) : (
         <div style={styleInner}>
           <Word word={word[language]} showBackground={!isroleRevealed} />
-          {displayDuolingo && word.turkish}
+          {displayDuolingo && word.english}
         </div>
       )}
     </div>

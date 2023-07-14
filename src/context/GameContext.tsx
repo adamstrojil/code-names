@@ -6,7 +6,6 @@ const DEFAULT_STATE: GameState = {
   language: "english",
   startingColor: "red",
   gameVariant: "single",
-  page: "mainMenu"
 };
 
 type GameContextType = {

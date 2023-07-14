@@ -1,18 +1,14 @@
-import { ReactNode, useContext, useState } from "react";
-
-import { Page } from "../../types";
-
-import { MainMenuPage, BoardPage, MapPage } from "../pages";
-import { GameContext } from "../../context/GameContext";
+import { Route, Routes } from "react-router-dom";
+import { BoardPage, MainMenuPage, MapPage } from "../pages";
 
 export function App() {
-  const { page } = useContext(GameContext).gameState;
+  return (
+    <Routes>
+      <Route path="/" element={<MainMenuPage />} />
+      <Route path="/map" element={<MapPage />} />
+      <Route path="/board" element={<BoardPage />} />
 
-  const modeToPageMap: { [key in Page]: ReactNode } = {
-    mainMenu: <MainMenuPage/>,
-    board: <BoardPage/>,
-    map: <MapPage/>,
-  };
-
-  return modeToPageMap[page];
+      <Route path="*" element={<MainMenuPage />} />
+    </Routes>
+  );
 }

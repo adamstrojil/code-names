@@ -1,19 +1,13 @@
-import { useContext } from "react";
-
-import { GameContext } from "../../context/GameContext";
-import { Button } from "../atoms";
+import { MainMenuLink } from "../atoms";
 
 export function MainMenuPage() {
-  const { updateContext } = useContext(GameContext);
-
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
       }}
     >
       <h1>CODE NAMES</h1>
@@ -25,14 +19,8 @@ export function MainMenuPage() {
           justifyContent: "center",
         }}
       >
-        <Button variant="big" onClick={() => updateContext({ page: "board" })}>
-          Board
-          <img alt="board" src="../../board.png" style={{ width: "150px" }} />
-        </Button>
-        <Button variant="big" onClick={() => updateContext({ page: "map" })}>
-          Map
-          <img alt="map" src="../../map.png" style={{ width: "150px" }} />
-        </Button>
+        <MainMenuLink to="/board" imgSrc="../../board.png" label="Board" />
+        <MainMenuLink to="/map" imgSrc="../../map.png" label="Map" />
       </div>
     </div>
   );

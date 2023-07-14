@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { App } from "./components/pages";
-import reportWebVitals from "./reportWebVitals";
+import { GameContextProvider } from "./context/GameContext";
 import "./index.css";
-import { GameContext, DEFAULT_CONTEXT,GameContextProvider } from "./context/GameContext";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <GameContextProvider>
-      <App />
-    </GameContextProvider>
+    <BrowserRouter>
+      <GameContextProvider>
+        <App />
+      </GameContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

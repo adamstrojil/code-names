@@ -1,44 +1,26 @@
 import { ReactNode } from "react";
-import { ButtonVariant } from "../../types";
 
 type Props = {
-  variant?: ButtonVariant;
   children: ReactNode;
   onClick: () => void;
 };
 
-const baseStyle = {
+const style = {
   borderRadius: "5px",
-  backgroundColor: "white",
+  backgroundColor: "#efefef",
   color: "black",
-  border: "2px solid #bca785",
+  border: "none",
   cursor: "pointer",
-  outline: "none",
+  padding: "16px 16px",
+  textAlign: "center" as const,
+  display: "inline-block",
+  fontSize: "16px",
+  margin: "4px 2px 16px 2px",
 };
 
-const mapVariantToStyle: { [key in ButtonVariant]: {} } = {
-  normal: {
-    ...baseStyle,
-    padding: "16px 16px",
-    textAlign: "center" as const,
-    display: "inline-block",
-    fontSize: "16px",
-    margin: "4px 2px 16px 2px",
-  },
-  big: {
-    ...baseStyle,
-    height: "200px",
-    width: "200px",
-    display: "flex",
-    flexDirection: "column" as const,
-    alignItems: "center",
-    justifyContent: "space-evenly",
-  },
-};
-
-export function Button({ variant = "normal", children, onClick }: Props) {
+export function Button({ children, onClick }: Props) {
   return (
-    <button onClick={onClick} style={mapVariantToStyle[variant]}>
+    <button onClick={onClick} style={style}>
       {children}
     </button>
   );
