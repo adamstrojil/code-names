@@ -10,7 +10,7 @@ type Props = {
   cardRole: CardRole;
 };
 
-const styleOuter = {
+const buttonStyles = {
   height: "15vh",
   width: "18vw",
   backgroundColor: "#f1dbba",
@@ -23,6 +23,8 @@ const styleOuter = {
   cursor: "pointer",
   boxShadow:
     " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  border: "none",
+  padding: 0,
 };
 
 const styleInner = {
@@ -36,11 +38,7 @@ const styleInner = {
   border: "1px solid #8e775488",
   borderRadius: "5px",
   padding: "8px",
-};
-
-const styleMirrored = {
-  transform: "rotate(180deg)",
-  fontWeight: "normal" as "normal",
+  fontWeight: "bolder" as const,
 };
 
 const hrStyle = {
@@ -49,37 +47,38 @@ const hrStyle = {
   borderBottom: "0px",
 };
 
-export function Card({ word, cardRole = "neutral" }: Props) {
+export function Card({ word: wordObject, cardRole = "neutral" }: Props) {
   const [isroleRevealed, setIsRoleRevealed] = useState(false);
   const { gameVariant, language } = useContext(GameContext).gameState;
 
-  const displayMirrored = gameVariant === "mirrored";
-  const displayDuolingo = gameVariant === "duolingo";
+  const isMirroredMode = gameVariant === "mirrored";
+  const isDuolingoMode = gameVariant === "duolingo";
+  const isSingleMode = gameVariant === "single";
+  
+  const word = wordObject[language];
 
   return (
-    <div
+    <button
       style={{
-        ...styleOuter,
+        ...buttonStyles,
         ...(isroleRevealed
-          ? { ...mapRoleToStyles(cardRole,true), color: "rgba(0,0,0,0.3)" }
+          ? { ...mapRoleToStyles(cardRole, isroleRevealed) }
           : {}),
       }}
       onClick={() => setIsRoleRevealed(true)}
     >
-      {displayMirrored ? (
-        <div style={styleInner}>
-          <div style={styleMirrored}>
-            <Word word={word[language]} />
-          </div>
-          <hr style={hrStyle} />
-          <Word word={word[language]} showBackground={!isroleRevealed} />
-        </div>
-      ) : (
-        <div style={styleInner}>
-          <Word word={word[language]} showBackground={!isroleRevealed} />
-          {displayDuolingo && word.english}
-        </div>
-      )}
-    </div>
+      <span style={styleInner}>
+        {!isSingleMode && (
+          <>
+            <Word
+              isMirrored={isMirroredMode}
+              word={isDuolingoMode ? wordObject.english : word}
+            />
+            <hr style={hrStyle} />
+          </>
+        )}
+        <Word isBold word={word} showBackground={!isroleRevealed} />
+      </span>
+    </button>
   );
 }

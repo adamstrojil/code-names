@@ -19,6 +19,7 @@ const style = {
   fontSize: "16px",
   margin: "4px 2px 16px 2px",
   cursor: "pointer",
+  minWidth: "100px"
 };
 
 export function Select<T extends string>({

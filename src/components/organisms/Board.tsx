@@ -11,7 +11,6 @@ const style = {
   height: "100vh",
   backgroundColor: "white", 
   fontFamily: "tahoma",
-  fontWeight: "bolder" as const,
   paddingRight: "1vw",
   paddingLeft: "1vw",
 };

@@ -7,9 +7,9 @@ type Props = {
 };
 
 const OPTIONS: Array<{ value: Language; label: string }> = [
-  { value: "english", label: "🇬🇧 English" },
-  { value: "czech", label: "🇨🇿 Czech" },
-  { value: "turkish", label: "🇹🇷 Turkish" },
+  { value: "english", label: "English" },
+  { value: "czech", label: "Czech" },
+  { value: "turkish", label: "Turkish" },
 ];
 
 export function LanguageSelect({ onSelected, selectedLanguage }: Props) {

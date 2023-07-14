@@ -10,7 +10,6 @@ export function MainMenuPage() {
         transform: "translate(-50%, -50%)",
       }}
     >
-      <h1>CODE NAMES</h1>
       <div
         style={{
           display: "flex",

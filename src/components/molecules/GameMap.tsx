@@ -17,7 +17,7 @@ const mapStyle = {
   backgroundColor: "black",
   marginBottom: "32px",
   marginTop: "16px",
-  boxShadow: "0 0 0 5px #bca785",
+  boxShadow: "0 0 0 4px #bcbcbc",
 };
 
 export function GameMap({ rolesForRound, isBlurred }: Props) {

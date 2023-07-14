@@ -14,7 +14,6 @@ const fieldStyle = {
   height: "6vh",
   margin: "auto",
   fontSize: "1.5rem",
-  color: "#FFFFFFAA",
   boxShadow: "inset 0 0 6px #000000",
   borderRadius: "6px",
   transition: "1s ease-in-out",
@@ -24,11 +23,12 @@ export function GameMapField({ role, isRoleRevealed }: Props) {
   return (
     <div
       style={{
-        ...fieldStyle,
         ...mapRoleToStyles(role, isRoleRevealed),
+        ...fieldStyle,
+        color: isRoleRevealed ? "white" : "transparent",
       }}
     >
-      {isRoleRevealed ? mapRoleToSign[role] : ""}
+      {mapRoleToSign[role]}
     </div>
   );
 }

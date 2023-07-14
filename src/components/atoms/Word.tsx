@@ -1,9 +1,11 @@
 type Props = {
   word: string;
+  isBold?: boolean;
+  isMirrored?: boolean;
   showBackground?: boolean;
 };
 
-export function Word({ word, showBackground = false }: Props) {
+export function Word({ word, isBold = false, isMirrored = false, showBackground = false }: Props) {
   const style = {
     width: "100%",
     display: "flex",
@@ -15,7 +17,9 @@ export function Word({ word, showBackground = false }: Props) {
     paddingTop: showBackground ? "4px" : "undefined",
     paddingBottom: showBackground ? "8px" : "undefined",
     marginTop: showBackground ? "4px" : "undefined",
+    fontWeight: isBold ? ("bolder" as const) : ("normal" as const),
+    transform: isMirrored ? "rotate(180deg)" : "none" 
   };
 
-  return <div style={style}>{word}</div>;
+  return <span style={style}>{word}</span>;
 }

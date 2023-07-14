@@ -2141,7 +2141,7 @@ export const WORD_BANK = [
   {
     default: "Chick",
     english: "Chick",
-    turkish: "civciv",
+    turkish: "Civciv",
     czech: "Kuřátko",
   },
   {

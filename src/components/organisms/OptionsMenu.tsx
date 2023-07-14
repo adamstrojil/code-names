@@ -4,7 +4,6 @@ import { getNewWordCardSet } from "../../lib/utils";
 import { WordCard } from "../../types";
 import { Button } from "../atoms";
 import { GameModeSelect, LanguageSelect } from "../molecules";
-import { Link } from "react-router-dom";
 
 type Props = {
   setWords: (words: Array<WordCard>) => void;
@@ -25,7 +24,7 @@ export function OptionsMenu({ setWords }: Props) {
         }}
       >
         <Button onClick={() => setWords(getNewWordCardSet())}>
-          New Words &#x21bb;
+          New Game
         </Button>
         <LanguageSelect
           onSelected={(language) => updateContext({ language })}

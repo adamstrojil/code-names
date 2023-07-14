@@ -9,7 +9,7 @@ type Props = {
 const OPTIONS: Array<{ value: GameVariant; label: string }> = [
   { value: "single", label: "Single" },
   { value: "mirrored", label: "Mirrored" },
-  { value: "duolingo", label: "Duolingo 🇹🇷" },
+  { value: "duolingo", label: "Duolingo" },
 ];
 
 export function GameModeSelect({ onSelected, selectedMode }: Props) {
