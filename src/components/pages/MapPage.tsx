@@ -12,7 +12,14 @@ export function MapPage() {
   const { updateContext } = useContext(GameContext);
 
   return (
-    <div style={{ display: "grid", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "grid",
+        justifyContent: "center",
+        alignContent: "center",
+        // height: "100vh",
+      }}
+    >
       {scannedText ? (
         <>
           <GameMap
@@ -21,8 +28,8 @@ export function MapPage() {
           />
           {!isMapRevealed && (
             <>
-              <h2>Map successfully scanned!</h2>
-              <Button onClick={() => setIsMapRevealed(true)}>Show Map</Button>
+              <h2>Map Ready!</h2>
+              <Button onClick={() => setIsMapRevealed(true)}>Reveal Map</Button>
             </>
           )}
 

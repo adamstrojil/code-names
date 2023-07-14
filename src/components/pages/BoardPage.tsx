@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { getNewWordCardSet } from "../../lib/utils";
-import { Page, WordCard } from "../../types";
+import { WordCard } from "../../types";
 
 import { Qr } from "../atoms";
 import { Board, OptionsMenu } from "../organisms";

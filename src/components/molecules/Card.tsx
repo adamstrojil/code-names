@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 
-import { CardRole, Word as WordType } from "../../types";
-import { mapRoleToStyles } from "../../lib/utils";
-import { Word } from "../atoms";
 import { GameContext } from "../../context/GameContext";
+import { mapRoleToStyles } from "../../lib/utils";
+import { CardRole, Word as WordType } from "../../types";
+import { Word } from "../atoms";
 
 type Props = {
   word: WordType;
@@ -61,7 +61,7 @@ export function Card({ word, cardRole = "neutral" }: Props) {
       style={{
         ...styleOuter,
         ...(isroleRevealed
-          ? { ...mapRoleToStyles(cardRole), color: "rgba(0,0,0,0.3)" }
+          ? { ...mapRoleToStyles(cardRole,true), color: "rgba(0,0,0,0.3)" }
           : {}),
       }}
       onClick={() => setIsRoleRevealed(true)}

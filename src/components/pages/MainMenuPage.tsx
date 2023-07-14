@@ -1,6 +1,6 @@
 import { useContext } from "react";
+
 import { GameContext } from "../../context/GameContext";
-import { Page } from "../../types";
 import { Button } from "../atoms";
 
 export function MainMenuPage() {
@@ -20,6 +20,9 @@ export function MainMenuPage() {
       <div
         style={{
           display: "flex",
+          gap: "10px",
+          flexWrap: "wrap",
+          justifyContent: "center",
         }}
       >
         <Button variant="big" onClick={() => updateContext({ page: "board" })}>

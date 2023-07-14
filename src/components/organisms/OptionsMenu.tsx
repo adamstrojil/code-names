@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Page, WordCard } from "../../types";
-import { Button } from "../atoms";
-import { GameModeSelect, LanguageSelect } from "../molecules";
 import { GameContext } from "../../context/GameContext";
 import { getNewWordCardSet } from "../../lib/utils";
+import { WordCard } from "../../types";
+import { Button } from "../atoms";
+import { GameModeSelect, LanguageSelect } from "../molecules";
 
 type Props = {
   setWords: (words: Array<WordCard>) => void;
@@ -22,7 +22,7 @@ export function OptionsMenu({ setWords }: Props) {
         justifyContent: "center",
       }}
     >
-      <Button onClick={() => setWords(getNewWordCardSet())}>New Words</Button>
+      <Button onClick={() => setWords(getNewWordCardSet())}>New Words &#x21bb;</Button>
       <LanguageSelect
         onSelected={(language) => updateContext({ language })}
         selectedLanguage={language}

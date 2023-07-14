@@ -29,7 +29,6 @@ const mapVariantToStyle: { [key in ButtonVariant]: {} } = {
     ...baseStyle,
     height: "200px",
     width: "200px",
-    marginRight: "10px",
     display: "flex",
     flexDirection: "column" as const,
     alignItems: "center",
