@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getNewWordCardSet } from "../../lib/utils";
 import { WordCard } from "../../types";
 
-import { Qr, Link } from "../atoms";
+import { QrCode, Link } from "../atoms";
 import { Board, OptionsMenu } from "../organisms";
 
 export function BoardPage() {
@@ -26,7 +26,7 @@ export function BoardPage() {
           gap: "20px",
         }}
       >
-        <Qr text={rolesAsString} />
+        <QrCode text={rolesAsString} />
         <Link to={"/map"}>
           <span
             style={{

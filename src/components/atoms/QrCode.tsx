@@ -5,6 +5,6 @@ type Props = {
   size?: number;
 };
 
-export function Qr({ text, size = 250 }: Props) {
+export function QrCode({ text, size = 250 }: Props) {
   return <QRCodeSVG value={text} size={size} />;
 }
