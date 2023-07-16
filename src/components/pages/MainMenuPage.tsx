@@ -1,4 +1,6 @@
 import { MainMenuLink } from "../atoms";
+import boardImg from "../../assets/board.png";
+import mapImg from "../../assets/map.png";
 
 export function MainMenuPage() {
   return (
@@ -18,8 +20,8 @@ export function MainMenuPage() {
           justifyContent: "center",
         }}
       >
-        <MainMenuLink to="/board" imgSrc="../../board.png" label="Board" />
-        <MainMenuLink to="/map" imgSrc="../../map.png" label="Map" />
+        <MainMenuLink to="/board" imgSrc={boardImg} label="Board" />
+        <MainMenuLink to="/map" imgSrc={mapImg} label="Map" />
       </div>
     </div>
   );
