@@ -15,7 +15,7 @@ const buttonStyles = {
   width: "18vw",
   backgroundColor: "#f1dbba",
   display: "flex",
-  flexDirection: "column" as "column", //wtf
+  flexDirection: "column" as const, //wtf
   alignItems: "center",
   justifyContent: "center",
   margin: "auto",
@@ -31,7 +31,7 @@ const styleInner = {
   width: "calc(100% - 28px)",
   height: "calc(100% - 28px)",
   display: "flex",
-  flexDirection: "column" as "column",
+  flexDirection: "column" as const,
   alignItems: "center",
   justifyContent: "center",
   margin: "5px",

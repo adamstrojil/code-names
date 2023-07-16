@@ -7,7 +7,7 @@ type Props = {
 
 const style = {
   display: "flex",
-  flexWrap: "wrap" as "wrap",
+  flexWrap: "wrap" as const,
   height: "100vh",
   backgroundColor: "white", 
   fontFamily: "tahoma",

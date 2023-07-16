@@ -9,7 +9,7 @@ export function QrScanner({ onScanResult }: Props) {
     <QrReader
       scanDelay={500}
       onResult={(result) => {
-        if (!!result) {
+        if (result) {
           onScanResult(result.getText());
         }
       }}

@@ -5,7 +5,7 @@ const style = {
   borderRadius: "5px",
   color: "black",
   border: "none",
-  textAlign: "center" as "center",
+  textAlign: "center" as const,
   display: "inline-block",
   fontSize: "16px",
   margin: "4px 2px 16px",

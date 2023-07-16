@@ -10,7 +10,7 @@ const mapStyle = {
   width: "34vh",
   height: "34vh",
   display: "flex",
-  flexWrap: "wrap" as "wrap",
+  flexWrap: "wrap" as const,
   justifyContent: "space-around",
   border: "15px solid black",
   borderRadius: "12px",
