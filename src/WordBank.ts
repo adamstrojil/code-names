@@ -1224,7 +1224,7 @@ export const WORD_BANK = [
     default: "Foot",
     english: "Foot",
     turkish: "Ayak",
-    czech: "Chodidlo",
+    czech: "Noha",
   },
   {
     default: "New York",
@@ -1266,7 +1266,7 @@ export const WORD_BANK = [
     default: "Slip",
     english: "Slip",
     turkish: "Kayma",
-    czech: "Uklouznutí",
+    czech: "Uklouznut",
   },
   {
     default: "Date",
@@ -1313,14 +1313,14 @@ export const WORD_BANK = [
   {
     default: "State",
     english: "State",
-    turkish: "Durum",
+    turkish: "Ülke",
     czech: "Stát",
   },
   {
     default: "Match",
     english: "Match",
     turkish: "Kibrit",
-    czech: "Zápas",
+    czech: "Zápalka",
   },
   {
     default: "Iron",
@@ -1331,7 +1331,7 @@ export const WORD_BANK = [
   {
     default: "Block",
     english: "Block",
-    turkish: "Engellemek",
+    turkish: "Blok",
     czech: "Blok",
   },
   {
@@ -1355,7 +1355,7 @@ export const WORD_BANK = [
   {
     default: "Stream",
     english: "Stream",
-    turkish: "Aktarım",
+    turkish: "Akarsu",
     czech: "Proud",
   },
   {
@@ -1380,7 +1380,7 @@ export const WORD_BANK = [
     default: "Play",
     english: "Play",
     turkish: "Oynamak",
-    czech: "Hrát si",
+    czech: "Hrát",
   },
   {
     default: "Tooth",
@@ -1392,13 +1392,7 @@ export const WORD_BANK = [
     default: "Arm",
     english: "Arm",
     turkish: "Kol",
-    czech: "Paže",
-  },
-  {
-    default: "Bermuda",
-    english: "Bermuda",
-    turkish: "Bermuda",
-    czech: "Bermudy",
+    czech: "Ruka",
   },
   {
     default: "Diamond",
@@ -1415,8 +1409,8 @@ export const WORD_BANK = [
   {
     default: "Comic",
     english: "Comic",
-    turkish: "Komik",
-    czech: "Komik",
+    turkish: "Komedi",
+    czech: "Komedie",
   },
   {
     default: "Mammoth",
@@ -1440,7 +1434,7 @@ export const WORD_BANK = [
     default: "Missile",
     english: "Missile",
     turkish: "Füze",
-    czech: "Střela",
+    czech: "Raketa",
   },
   {
     default: "Paste",
@@ -1457,7 +1451,7 @@ export const WORD_BANK = [
   {
     default: "Pheonix",
     english: "Pheonix",
-    turkish: "Phoenix",
+    turkish: "Anka kuşu",
     czech: "Pheonix",
   },
   {
@@ -1529,20 +1523,20 @@ export const WORD_BANK = [
   {
     default: "Fall",
     english: "Fall",
-    turkish: "Düşmek",
+    turkish: "Sonbahar",
     czech: "Podzim",
   },
   {
     default: "Track",
     english: "Track",
-    turkish: "İzlemek",
+    turkish: "Pist",
     czech: "Dráha",
   },
   {
     default: "Force",
     english: "Force",
     turkish: "Güç",
-    czech: "Platnost",
+    czech: "Síla",
   },
   {
     default: "Dinosaur",
@@ -1554,13 +1548,13 @@ export const WORD_BANK = [
     default: "Bill",
     english: "Bill",
     turkish: "Fatura",
-    czech: "Účtovat",
+    czech: "Faktura",
   },
   {
     default: "Mine",
     english: "Mine",
-    turkish: "Bana ait",
-    czech: "Těžit",
+    turkish: "Maden",
+    czech: "Důl",
   },
   {
     default: "Turkey",
@@ -1587,12 +1581,6 @@ export const WORD_BANK = [
     czech: "Most",
   },
   {
-    default: "Robin",
-    english: "Robin",
-    turkish: "Robin",
-    czech: "Červenka",
-  },
-  {
     default: "Line",
     english: "Line",
     turkish: "Astar",
@@ -1601,14 +1589,14 @@ export const WORD_BANK = [
   {
     default: "Plate",
     english: "Plate",
-    turkish: "Plaka",
+    turkish: "Tabak",
     czech: "Talíř",
   },
   {
     default: "Band",
     english: "Band",
     turkish: "Bant",
-    czech: "Kapela",
+    czech: "Náplast",
   },
   {
     default: "Fire",
@@ -1643,7 +1631,7 @@ export const WORD_BANK = [
   {
     default: "Suit",
     english: "Suit",
-    turkish: "Uygun olmak",
+    turkish: "Takım",
     czech: "Oblek",
   },
   {
@@ -1662,7 +1650,7 @@ export const WORD_BANK = [
     default: "Mercury",
     english: "Mercury",
     turkish: "Merkür",
-    czech: "Rtuť",
+    czech: "Merkur",
   },
   {
     default: "Moon",
@@ -1673,7 +1661,7 @@ export const WORD_BANK = [
   {
     default: "Net",
     english: "Net",
-    turkish: "Açık",
+    turkish: "Ağ",
     czech: "Síť",
   },
   {
@@ -1686,7 +1674,7 @@ export const WORD_BANK = [
     default: "Satellite",
     english: "Satellite",
     turkish: "Uydu",
-    czech: "Družice",
+    czech: "Satelit",
   },
   {
     default: "Angel",
@@ -1711,12 +1699,6 @@ export const WORD_BANK = [
     english: "Fork",
     turkish: "Çatal",
     czech: "Vidlička",
-  },
-  {
-    default: "Pitch",
-    english: "Pitch",
-    turkish: "Saha",
-    czech: "Rozteč",
   },
   {
     default: "King",
@@ -1755,12 +1737,6 @@ export const WORD_BANK = [
     czech: "Část",
   },
   {
-    default: "Bugle",
-    english: "Bugle",
-    turkish: "Boru",
-    czech: "Polnice",
-  },
-  {
     default: "Witch",
     english: "Witch",
     turkish: "Cadı",
@@ -1776,7 +1752,7 @@ export const WORD_BANK = [
     default: "Press",
     english: "Press",
     turkish: "Basmak",
-    czech: "Lis",
+    czech: "Tlak",
   },
   {
     default: "Spine",
@@ -1799,7 +1775,7 @@ export const WORD_BANK = [
   {
     default: "Bond",
     english: "Bond",
-    turkish: "Bağlamak",
+    turkish: "Bağ",
     czech: "Pouto",
   },
   {
@@ -1830,7 +1806,7 @@ export const WORD_BANK = [
     default: "Seal",
     english: "Seal",
     turkish: "Fok",
-    czech: "Těsnění",
+    czech: "Tuleň",
   },
   {
     default: "Aztec",
@@ -1877,7 +1853,7 @@ export const WORD_BANK = [
   {
     default: "Post",
     english: "Post",
-    turkish: "Postalamak",
+    turkish: "Posta",
     czech: "Pošta",
   },
   {
@@ -1890,7 +1866,7 @@ export const WORD_BANK = [
     default: "Square",
     english: "Square",
     turkish: "Kare",
-    czech: "Náměstí",
+    czech: "Čtverec",
   },
   {
     default: "Mass",
@@ -1908,7 +1884,7 @@ export const WORD_BANK = [
     default: "Wave",
     english: "Wave",
     turkish: "Dalga",
-    czech: "Mávat",
+    czech: "Vlna",
   },
   {
     default: "Car",
@@ -1932,7 +1908,7 @@ export const WORD_BANK = [
     default: "Crash",
     english: "Crash",
     turkish: "Kaza",
-    czech: "Pád",
+    czech: "Náraz",
   },
   {
     default: "Tail",
@@ -1949,7 +1925,7 @@ export const WORD_BANK = [
   {
     default: "Horn",
     english: "Horn",
-    turkish: "Korna",
+    turkish: "Boynuz",
     czech: "Roh",
   },
   {
@@ -1986,7 +1962,7 @@ export const WORD_BANK = [
     default: "Jet",
     english: "Jet",
     turkish: "Jet",
-    czech: "Proud",
+    czech: "Stíhačka",
   },
   {
     default: "Duck",
@@ -2021,13 +1997,13 @@ export const WORD_BANK = [
   {
     default: "Tick",
     english: "Tick",
-    turkish: "Tık",
+    turkish: "Kene",
     czech: "Klíště",
   },
   {
     default: "Check",
     english: "Check",
-    turkish: "Kontrol etmek",
+    turkish: "Çek",
     czech: "Šek",
   },
   {
@@ -2040,7 +2016,7 @@ export const WORD_BANK = [
     default: "Strike",
     english: "Strike",
     turkish: "Çarpmak",
-    czech: "Stávkovat",
+    czech: "Udeřit",
   },
   {
     default: "Kangaroo",
@@ -2051,7 +2027,7 @@ export const WORD_BANK = [
   {
     default: "Spike",
     english: "Spike",
-    turkish: "Başak",
+    turkish: "Sivri",
     czech: "Špice",
   },
   {
@@ -2160,7 +2136,7 @@ export const WORD_BANK = [
     default: "Spot",
     english: "Spot",
     turkish: "Leke",
-    czech: "Bod",
+    czech: "Skvrna",
   },
   {
     default: "Piano",
@@ -2169,8 +2145,8 @@ export const WORD_BANK = [
     czech: "Klavír",
   },
   {
-    default: "Pupil",
-    english: "Pupil",
+    default: "Student",
+    english: "Student",
     turkish: "Öğrenci",
     czech: "Žák",
   },
@@ -2195,13 +2171,13 @@ export const WORD_BANK = [
   {
     default: "Head",
     english: "Head",
-    turkish: "KAFA",
+    turkish: "Kafa",
     czech: "Hlava",
   },
   {
     default: "Litter",
     english: "Litter",
-    turkish: "Yavrulamak",
+    turkish: "Çöp",
     czech: "Smetí",
   },
   {
@@ -2213,7 +2189,7 @@ export const WORD_BANK = [
   {
     default: "Mug",
     english: "Mug",
-    turkish: "Saldırıp soymak",
+    turkish: "Soygun",
     czech: "Džbánek",
   },
   {
@@ -2459,14 +2435,14 @@ export const WORD_BANK = [
   {
     default: "Buck",
     english: "Buck",
-    turkish: "Buck",
+    turkish: "Dolar",
     czech: "Dolar",
   },
   {
     default: "Agent",
     english: "Agent",
     turkish: "Ajan",
-    czech: "Činidlo",
+    czech: "Agent",
   },
   {
     default: "Sock",
@@ -2478,7 +2454,7 @@ export const WORD_BANK = [
     default: "Nut",
     english: "Nut",
     turkish: "Ceviz",
-    czech: "Matice",
+    czech: "Matka",
   },
   {
     default: "Boot",
@@ -2538,7 +2514,7 @@ export const WORD_BANK = [
     default: "Button",
     english: "Button",
     turkish: "Düğme",
-    czech: "Knoflík",
+    czech: "Tlačítko",
   },
   {
     default: "Snowman",
@@ -2615,8 +2591,8 @@ export const WORD_BANK = [
   {
     default: "Washer",
     english: "Washer",
-    turkish: "Yıkama makinesi",
-    czech: "Podložka",
+    turkish: "Çamaşır makinesi",
+    czech: "Pračka",
   },
   {
     default: "Game",
@@ -2639,7 +2615,7 @@ export const WORD_BANK = [
   {
     default: "Horse",
     english: "Horse",
-    turkish: "Atış",
+    turkish: "At",
     czech: "Kůň",
   },
   {
@@ -2693,7 +2669,7 @@ export const WORD_BANK = [
   {
     default: "Brush",
     english: "Brush",
-    turkish: "Fırçalamak",
+    turkish: "Fırça",
     czech: "Štětec",
   },
   {
@@ -2748,7 +2724,7 @@ export const WORD_BANK = [
     default: "Cast",
     english: "Cast",
     turkish: "Döküm",
-    czech: "Obsazení",
+    czech: "Sádra",
   },
   {
     default: "Gas",
@@ -2765,7 +2741,7 @@ export const WORD_BANK = [
   {
     default: "Sink",
     english: "Sink",
-    turkish: "Atmak",
+    turkish: "Lavabo",
     czech: "Dřez",
   },
   {
@@ -2903,7 +2879,7 @@ export const WORD_BANK = [
   {
     default: "Palm",
     english: "Palm",
-    turkish: "Avuç içi",
+    turkish: "Avuç",
     czech: "Dlaň",
   },
   {
@@ -2951,8 +2927,8 @@ export const WORD_BANK = [
   {
     default: "String",
     english: "String",
-    turkish: "Sicim",
-    czech: "Tětiva",
+    turkish: "Yay",
+    czech: "Struna",
   },
   {
     default: "Night",
@@ -2993,14 +2969,14 @@ export const WORD_BANK = [
   {
     default: "Bark",
     english: "Bark",
-    turkish: "Havlamak",
+    turkish: "Kabuk",
     czech: "Kůra",
   },
   {
     default: "Bug",
     english: "Bug",
     turkish: "Böcek",
-    czech: "Chyba",
+    czech: "Brouk",
   },
   {
     default: "Mint",
@@ -3042,7 +3018,7 @@ export const WORD_BANK = [
     default: "Mount",
     english: "Mount",
     turkish: "Dağ",
-    czech: "Mount",
+    czech: "Hora",
   },
   {
     default: "Thumb",
@@ -3078,7 +3054,7 @@ export const WORD_BANK = [
     default: "Root",
     english: "Root",
     turkish: "Kök",
-    czech: "Vykořenit",
+    czech: "Kořen",
   },
   {
     default: "Bar",
@@ -3103,12 +3079,6 @@ export const WORD_BANK = [
     english: "Battery",
     turkish: "Pil",
     czech: "Baterie",
-  },
-  {
-    default: "Compound",
-    english: "Compound",
-    turkish: "Birleştirmek",
-    czech: "Sloučenina",
   },
   {
     default: "Slug",
@@ -3138,7 +3108,7 @@ export const WORD_BANK = [
     default: "Ivory",
     english: "Ivory",
     turkish: "Fildişi",
-    czech: "Slonová kost",
+    czech: "Slonovina",
   },
   {
     default: "Pound",
@@ -3149,8 +3119,8 @@ export const WORD_BANK = [
   {
     default: "Sub",
     english: "Sub",
-    turkish: "Alt",
-    czech: "Sub",
+    turkish: "Denizaltı",
+    czech: "Ponorka",
   },
   {
     default: "Cliff",
@@ -3251,8 +3221,8 @@ export const WORD_BANK = [
   {
     default: "Watch",
     english: "Watch",
-    turkish: "Kol saati",
-    czech: "Hodinky",
+    turkish: "Saat",
+    czech: "Hodiny",
   },
   {
     default: "Lead",
@@ -3300,7 +3270,7 @@ export const WORD_BANK = [
     default: "Bomb",
     english: "Bomb",
     turkish: "Bomba",
-    czech: "Bombardovat",
+    czech: "Bomba",
   },
   {
     default: "Ruler",
@@ -3324,7 +3294,7 @@ export const WORD_BANK = [
     default: "Space",
     english: "Space",
     turkish: "Uzay",
-    czech: "Prostor",
+    czech: "Vesmír",
   },
   {
     default: "Hook",
@@ -3377,7 +3347,7 @@ export const WORD_BANK = [
   {
     default: "Nail",
     english: "Nail",
-    turkish: "Çivi",
+    turkish: "Tırnak",
     czech: "Nehet",
   },
   {
@@ -3449,7 +3419,7 @@ export const WORD_BANK = [
   {
     default: "Swing",
     english: "Swing",
-    turkish: "Sallanmak",
+    turkish: "Salıncak",
     czech: "Houpačka",
   },
   {
@@ -3546,7 +3516,7 @@ export const WORD_BANK = [
     default: "Stock",
     english: "Stock",
     turkish: "Stoklamak",
-    czech: "Skladem",
+    czech: "Sklad",
   },
   {
     default: "Millionaire",
@@ -3593,13 +3563,13 @@ export const WORD_BANK = [
   {
     default: "Change",
     english: "Change",
-    turkish: "Değiştirmek",
+    turkish: "Değişim",
     czech: "Změna",
   },
   {
     default: "Cap",
     english: "Cap",
-    turkish: "Şapka",
+    turkish: "Kapak",
     czech: "Víčko",
   },
   {
