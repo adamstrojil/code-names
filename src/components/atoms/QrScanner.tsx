@@ -1,19 +1,15 @@
-import { QrReader } from "react-qr-reader";
+import { useZxing } from "react-zxing";
 
 type Props = {
   onScanResult: (result: string) => void;
 };
 
-export function QrScanner({ onScanResult }: Props) {
-  return (
-    <QrReader
-      scanDelay={500}
-      onResult={(result) => {
-        if (result) {
-          onScanResult(result.getText());
-        }
-      }}
-      constraints={{ facingMode: "environment" }}
-    />
-  );
-}
+export const QrScanner = ({ onScanResult }: Props) => {
+  const { ref } = useZxing({
+    onResult(result) {
+      onScanResult(result.getText());
+    },
+  });
+
+  return <video ref={ref} />;
+};
