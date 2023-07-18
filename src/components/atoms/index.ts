@@ -6,3 +6,5 @@ export { QrScanner } from "./QrScanner";
 export { Select } from "./Select";
 export { MainMenuLink } from "./MainMenuLink";
 export { Link } from "./Link";
+export { Line } from "./Line";
+export { TextWithIcon } from "./TextWithIcon";

@@ -1,3 +1,5 @@
+import styled from "@emotion/styled";
+
 type Props = {
   word: string;
   isBold?: boolean;
@@ -5,21 +7,29 @@ type Props = {
   showBackground?: boolean;
 };
 
-export function Word({ word, isBold = false, isMirrored = false, showBackground = false }: Props) {
-  const style = {
+const StyledSpan = styled.span<Props>(
+  {
     width: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontSize: "28px",
-    backgroundColor: showBackground ? "white" : "transparent",
     borderRadius: "4px",
-    paddingTop: showBackground ? "4px" : "undefined",
-    paddingBottom: showBackground ? "8px" : "undefined",
-    marginTop: showBackground ? "4px" : "undefined",
-    fontWeight: isBold ? ("bolder" as const) : ("normal" as const),
-    transform: isMirrored ? "rotate(180deg)" : "none" 
-  };
+    fontFamily: '"Outfit", sans-serif',
+  },
+  ({ showBackground, isBold, isMirrored }) => ({
+    fontWeight: isBold ? 500 : 200,
+    transform: isMirrored ? "rotate(180deg)" : undefined,
+    ...(showBackground
+      ? {
+          backgroundColor: "white",
+          marginTop: "4px",
+          padding: "4px 0px 8px 0px",
+        }
+      : {}),
+  })
+);
 
-  return <span style={style}>{word}</span>;
+export function Word(props: Props) {
+  return <StyledSpan {...props}>{props.word}</StyledSpan>;
 }

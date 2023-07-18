@@ -1,20 +1,16 @@
-import { Link as BaseLink, LinkProps } from "react-router-dom";
+import styled from "@emotion/styled";
+import { Link as RouterLink } from "react-router-dom";
 
-const style = {
+export const Link = styled(RouterLink)({
   backgroundColor: "#efefef",
   borderRadius: "5px",
   color: "black",
   border: "none",
-  textAlign: "center" as const,
   display: "inline-block",
   fontSize: "16px",
   margin: "4px 2px 16px",
   cursor: "pointer",
   outline: "none",
   padding: "16px",
-  textDecoration: "none"
-};
-
-export function Link({ ...rest }: LinkProps) {
-  return <BaseLink style={style} {...rest} />;
-}
+  textDecoration: "none",
+});

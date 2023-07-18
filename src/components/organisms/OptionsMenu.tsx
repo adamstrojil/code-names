@@ -1,8 +1,10 @@
 import { useContext } from "react";
+import { MdOutlineRestartAlt } from 'react-icons/md';
+
 import { GameContext } from "../../context/GameContext";
 import { getNewWordCardSet } from "../../lib/utils";
 import { WordCard } from "../../types";
-import { Button } from "../atoms";
+import { Button, TextWithIcon } from "../atoms";
 import { GameModeSelect, LanguageSelect } from "../molecules";
 
 type Props = {
@@ -24,8 +26,8 @@ export function OptionsMenu({ setWords }: Props) {
         }}
       >
         <Button onClick={() => setWords(getNewWordCardSet())}>
-          New Game
-        </Button>
+          <TextWithIcon text="New Game" icon={<MdOutlineRestartAlt/>} />
+          </Button>
         <LanguageSelect
           onSelected={(language) => updateContext({ language })}
           selectedLanguage={language}

@@ -1,4 +1,6 @@
-import { mapRoleToSign, mapRoleToStyles } from "../../lib/utils";
+import styled from "@emotion/styled";
+
+import { roleToSignMap, roleToBackgroundColorMap } from "../../lib/utils";
 import { CardRole } from "../../types";
 
 type Props = {
@@ -6,7 +8,7 @@ type Props = {
   isRoleRevealed: boolean;
 };
 
-const fieldStyle = {
+const StyledField = styled.div(({ isRoleRevealed, role }: Props) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -17,18 +19,10 @@ const fieldStyle = {
   boxShadow: "inset 0 0 6px #000000",
   borderRadius: "6px",
   transition: "1s ease-in-out",
-};
+  color: isRoleRevealed ? "white" : "transparent",
+  backgroundColor: isRoleRevealed ? roleToBackgroundColorMap[role] : "white",
+}));
 
-export function GameMapField({ role, isRoleRevealed }: Props) {
-  return (
-    <div
-      style={{
-        ...mapRoleToStyles(role, isRoleRevealed),
-        ...fieldStyle,
-        color: isRoleRevealed ? "white" : "transparent",
-      }}
-    >
-      {mapRoleToSign[role]}
-    </div>
-  );
+export function GameMapField(props: Props) {
+  return <StyledField {...props}>{roleToSignMap[props.role]}</StyledField>;
 }

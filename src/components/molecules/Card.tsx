@@ -1,21 +1,29 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 
-import { GameContext } from "../../context/GameContext";
-import { mapRoleToStyles } from "../../lib/utils";
-import { CardRole, Word as WordType } from "../../types";
-import { Word } from "../atoms";
+import styled from "@emotion/styled";
+
+import {
+  roleToBackgroundColorMap,
+  roleToForegroundColorMap,
+} from "../../lib/utils";
+import { CardRole, GameVariant, Language, Word as WordType } from "../../types";
+import { Line, Word } from "../atoms";
 
 type Props = {
   word: WordType;
   cardRole: CardRole;
+  gameVariant: GameVariant;
+  language: Language;
 };
 
-const buttonStyles = {
+const StyledButtonCard = styled.button<{
+  isRoleRevealed: boolean;
+  cardRole: CardRole;
+}>(({ isRoleRevealed, cardRole }) => ({
   height: "15vh",
   width: "18vw",
-  backgroundColor: "#f1dbba",
   display: "flex",
-  flexDirection: "column" as const, //wtf
+  flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   margin: "auto",
@@ -25,60 +33,65 @@ const buttonStyles = {
     " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   border: "none",
   padding: 0,
-};
+  ...(isRoleRevealed
+    ? {
+        backgroundColor: roleToBackgroundColorMap[cardRole],
+        color: `${roleToForegroundColorMap[cardRole]}33`,
+      }
+    : { backgroundColor: "#f1dbba", color: "#000000" }),
+}));
 
-const styleInner = {
-  width: "calc(100% - 28px)",
-  height: "calc(100% - 28px)",
-  display: "flex",
-  flexDirection: "column" as const,
-  alignItems: "center",
-  justifyContent: "center",
-  margin: "5px",
-  border: "1px solid #8e775488",
-  borderRadius: "5px",
-  padding: "8px",
-  fontWeight: "bolder" as const,
-};
+const ContentContainer = styled.span<{ isSingleMode: boolean }>(
+  {
+    width: "calc(100% - 28px)",
+    height: "calc(100% - 28px)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    margin: "5px",
+    border: "1px solid #8e775488",
+    borderRadius: "5px",
+    padding: "8px",
+    gap: "2px",
+    fontWeight: "bolder",
+  },
+  ({ isSingleMode }) => ({
+    justifyContent: isSingleMode ? "center" : "space-between",
+  })
+);
 
-const hrStyle = {
-  width: "90%",
-  borderTop: "1px solid #0000001a",
-  borderBottom: "0px",
-};
-
-export function Card({ word: wordObject, cardRole = "neutral" }: Props) {
-  const [isroleRevealed, setIsRoleRevealed] = useState(false);
-  const { gameVariant, language } = useContext(GameContext).gameState;
+export function Card({
+  word: wordObject,
+  cardRole = "neutral",
+  language,
+  gameVariant,
+}: Props) {
+  const [isRoleRevealed, setIsRoleRevealed] = useState(false);
 
   const isMirroredMode = gameVariant === "mirrored";
   const isDuolingoMode = gameVariant === "duolingo";
   const isSingleMode = gameVariant === "single";
-  
+
   const word = wordObject[language];
 
   return (
-    <button
-      style={{
-        ...buttonStyles,
-        ...(isroleRevealed
-          ? { ...mapRoleToStyles(cardRole, isroleRevealed) }
-          : {}),
-      }}
+    <StyledButtonCard
+      cardRole={cardRole}
+      isRoleRevealed={isRoleRevealed}
       onClick={() => setIsRoleRevealed(true)}
     >
-      <span style={styleInner}>
+      <ContentContainer isSingleMode={isSingleMode}>
         {!isSingleMode && (
           <>
             <Word
               isMirrored={isMirroredMode}
               word={isDuolingoMode ? wordObject.english : word}
             />
-            <hr style={hrStyle} />
+            <Line />
           </>
         )}
-        <Word isBold word={word} showBackground={!isroleRevealed} />
-      </span>
-    </button>
+        <Word isBold word={word} showBackground={!isRoleRevealed} />
+      </ContentContainer>
+    </StyledButtonCard>
   );
 }

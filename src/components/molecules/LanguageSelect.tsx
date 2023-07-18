@@ -1,5 +1,5 @@
 import { Language } from "../../types";
-import { Select } from "../atoms/Select";
+import { Select } from "../atoms";
 
 type Props = {
   selectedLanguage: Language;

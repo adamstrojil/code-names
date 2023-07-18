@@ -1,16 +1,17 @@
+import styled from "@emotion/styled";
 import { CardRole } from "../../types";
 import { GameMapField } from "../atoms";
 
 type Props = {
-  isBlurred: boolean;
+  isMapRevealed: boolean;
   rolesForRound: Array<CardRole>;
 };
 
-const mapStyle = {
+export const MapContainer = styled.div({
   width: "34vh",
   height: "34vh",
   display: "flex",
-  flexWrap: "wrap" as const,
+  flexWrap: "wrap",
   justifyContent: "space-around",
   border: "15px solid black",
   borderRadius: "12px",
@@ -18,20 +19,14 @@ const mapStyle = {
   marginBottom: "32px",
   marginTop: "16px",
   boxShadow: "0 0 0 4px #bcbcbc",
-};
+});
 
-export function GameMap({ rolesForRound, isBlurred }: Props) {
-  const map = (
-    <div
-      style={{
-        ...mapStyle,
-      }}
-    >
+export function GameMap({ rolesForRound, isMapRevealed }: Props) {
+  return (
+    <MapContainer>
       {rolesForRound.map((role, index) => (
-        <GameMapField key={index} role={role} isRoleRevealed={!isBlurred} />
+        <GameMapField key={index} role={role} isRoleRevealed={isMapRevealed} />
       ))}
-    </div>
+    </MapContainer>
   );
-
-  return map;
 }

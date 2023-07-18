@@ -1,31 +1,25 @@
-import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
+import { ReactNode } from "react";
+
+import { Link } from "../atoms";
 
 type Props = {
   to: string;
-  imgSrc: string;
-  label: string;
+  children: ReactNode;
 };
 
-const style = {
-  borderRadius: "5px",
-  backgroundColor: "white",
-  color: "black",
-  border: "2px solid #bcbcbc",
-  cursor: "pointer",
-  height: "200px",
-  width: "200px",
+const ContentContainer = styled.div({
   display: "flex",
-  flexDirection: "column" as const,
+  flexDirection: "column",
   alignItems: "center",
   justifyContent: "space-evenly",
-  textDecoration: "none",
-};
+  gap: "10px",
+});
 
-export function MainMenuLink({ label, imgSrc, to }: Props) {
+export function MainMenuLink({ to, children }: Props) {
   return (
-    <Link to={to} style={style}>
-      {label}
-      <img aria-hidden src={imgSrc} style={{ width: "150px" }} />
+    <Link to={to}>
+      <ContentContainer>{children}</ContentContainer>
     </Link>
   );
 }

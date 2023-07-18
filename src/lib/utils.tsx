@@ -22,25 +22,23 @@ const assignRoles = (words: Array<Word>): Array<WordCard> => {
   return assigned.sort(() => Math.random() - 0.5);
 };
 
-export const mapRoleToStyles = (role: CardRole, isRoleRevealed = true) => {
-  const roleToColorStylesMap = {
-    neutral: { backgroundColor: isRoleRevealed ? "#efefef" : "white" },
-    blue: { backgroundColor: isRoleRevealed ? "#7acaff" : "white" },
-    red: { backgroundColor: isRoleRevealed ? "#ff5d56" : "white" },
-    black: {
-      backgroundColor: isRoleRevealed ? "black" : "white",
-      color: "white",
-    },
-  };
-  return {
-    color: `rgba(0,0,0,${isRoleRevealed ? "0.2" : "1"})`,
-    ...roleToColorStylesMap[role],
-  };
+export const roleToBackgroundColorMap: { [key in CardRole]: string } = {
+  neutral: "#efefef",
+  blue: "#7acaff",
+  red: "#ff5d56",
+  black: "#000000",
 };
 
-export const mapRoleToSign: { [key in CardRole]: string } = {
+export const roleToForegroundColorMap: { [key in CardRole]: string } = { // keep hex format for transparency 
+  neutral: "#000000",
+  blue: "#000000",
+  red: "#000000",
+  black: "#ffffff",
+};
+
+export const roleToSignMap: { [key in CardRole]: string } = {
   black: "💀",
-  red: "◯", //○
+  red: "◯",
   neutral: "",
   blue: "◯",
 };
