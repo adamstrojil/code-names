@@ -19,16 +19,16 @@ const QrSectionContainer = styled.div({
 
 export function BoardPage() {
   const [words, setWords] = useState<Array<WordCard>>(getNewWordCardSet());
-  const rolesAsCSVString = words.map(({ role }) => role).toString();
+  const rolesInCSVString = words.map(({ role }) => role).toString();
 
   return (
     <>
       <Board words={words} />
       <OptionsMenu setWords={setWords} />
       <QrSectionContainer>
-        <QrCode text={rolesAsCSVString} />
+        <QrCode text={rolesInCSVString} />
         <Link to={"/map"}>
-          <TextWithIcon text="Scan map" icon={<BiQrScan />} />
+          <TextWithIcon text="Scan map" icon={BiQrScan} />
         </Link>
       </QrSectionContainer>
     </>

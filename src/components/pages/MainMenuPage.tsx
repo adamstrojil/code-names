@@ -1,8 +1,7 @@
-import { BiQrScan } from "react-icons/bi";
+import styled from "@emotion/styled";
 import boardImg from "../../assets/board.png";
 import mapImg from "../../assets/map.png";
-import { MainMenuLink, TextWithIcon } from "../atoms";
-import styled from "@emotion/styled";
+import { MainMenuLink } from "../atoms";
 
 const CenteredContainer = styled.div({
   position: "absolute",
@@ -30,7 +29,7 @@ export function MainMenuPage() {
         </MainMenuLink>
         <MainMenuLink to="/map">
           <>
-            <TextWithIcon text="Scan map" icon={<BiQrScan />} />
+            Scan map
             <img aria-hidden alt="" src={mapImg} style={{ width: "150px" }} />
           </>
         </MainMenuLink>

@@ -13,7 +13,7 @@ const StyledSpan = styled.span<Props>(
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "28px",
+    fontSize: "2vw",
     borderRadius: "4px",
     fontFamily: '"Outfit", sans-serif',
   },

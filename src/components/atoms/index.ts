@@ -1,10 +1,11 @@
-export { GameMapField } from "./GameMapField";
-export { Word } from "./Word";
+export { Box } from "./Box";
 export { Button } from "./Button";
+export { GameMapField } from "./GameMapField";
+export { Line } from "./Line";
+export { Link } from "./Link";
+export { MainMenuLink } from "./MainMenuLink";
 export { QrCode } from "./QrCode";
 export { QrScanner } from "./QrScanner";
 export { Select } from "./Select";
-export { MainMenuLink } from "./MainMenuLink";
-export { Link } from "./Link";
-export { Line } from "./Line";
 export { TextWithIcon } from "./TextWithIcon";
+export { Word } from "./Word";

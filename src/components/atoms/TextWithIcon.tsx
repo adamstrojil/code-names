@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 
-import { ReactElement } from "react";
+import { IconType } from "react-icons";
 
 type Props = {
-  icon: ReactElement;
+  icon: IconType;
   text: string;
+  iconPlacement?: "left" | "right";
 };
 
 const StyledSpan = styled.span({
@@ -12,14 +13,19 @@ const StyledSpan = styled.span({
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
-  gap: "5px",
+  gap: "2px",
 });
 
-export function TextWithIcon({ text, icon }: Props) {
+export function TextWithIcon({
+  text,
+  icon: Icon,
+  iconPlacement = "right",
+}: Props) {
   return (
     <StyledSpan>
+      {iconPlacement === "left" && <Icon />}
       <span>{text}</span>
-      {icon}
+      {iconPlacement === "right" && <Icon />}
     </StyledSpan>
   );
 }

@@ -1203,7 +1203,7 @@ export const WORD_BANK = [
     default: "Ambulance",
     english: "Ambulance",
     turkish: "Ambulans",
-    czech: "Záchranář",
+    czech: "Ambulance",
   },
   {
     default: "Dress",
