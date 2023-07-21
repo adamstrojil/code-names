@@ -6,6 +6,7 @@ type Option<T> = {
 };
 
 type Props<T> = {
+  id?: string;
   options: Option<T>[];
   selectedOption: T;
   onChange: (value: T) => void;
@@ -22,15 +23,18 @@ const StyledSelect = styled.select({
   margin: "4px 2px 16px 2px",
   cursor: "pointer",
   minWidth: "100px",
+  padding: "5px",
 });
 
 export function Select<T extends string>({
   onChange,
   selectedOption,
   options,
+  id,
 }: Props<T>) {
   return (
     <StyledSelect
+      id={id}
       value={selectedOption}
       onChange={(event) => {
         onChange(event.target.value as T);

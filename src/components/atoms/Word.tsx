@@ -16,6 +16,7 @@ const StyledSpan = styled.span<Props>(
     fontSize: "2vw",
     borderRadius: "4px",
     fontFamily: '"Outfit", sans-serif',
+    textTransform: "capitalize",
   },
   ({ showBackground, isBold, isMirrored }) => ({
     fontWeight: isBold ? 500 : 200,

@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import { useZxing } from "react-zxing";
 import { Box } from "../atoms";
 

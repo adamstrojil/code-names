@@ -2,6 +2,7 @@ import { Language } from "../../types";
 import { Select } from "../atoms";
 
 type Props = {
+  id?: string;
   selectedLanguage: Language;
   onSelected: (value: Language) => void;
 };
@@ -12,9 +13,10 @@ const OPTIONS: Array<{ value: Language; label: string }> = [
   { value: "turkish", label: "Turkish" },
 ];
 
-export function LanguageSelect({ onSelected, selectedLanguage }: Props) {
+export function LanguageSelect({ onSelected, selectedLanguage, id }: Props) {
   return (
     <Select
+      id={id}
       options={OPTIONS}
       selectedOption={selectedLanguage}
       onChange={onSelected}

@@ -159,7 +159,7 @@ export const WORD_BANK = [
     default: "Nurse",
     english: "Nurse",
     turkish: "Hemşire",
-    czech: "Sestřička",
+    czech: "Sestra",
   },
   {
     default: "Leprechaun",
@@ -1874,7 +1874,7 @@ export const WORD_BANK = [
   {
     default: "Slug",
     english: "Slug",
-    turkish: "Sümüklüböcek",
+    turkish: "Sümüklü böcek",
     czech: "Slimák",
   },
   {
@@ -2133,7 +2133,7 @@ export const WORD_BANK = [
     default: "Giant",
     english: "Giant",
     turkish: "Devasa",
-    czech: "Obří",
+    czech: "Obr",
   },
   {
     default: "Nail",
