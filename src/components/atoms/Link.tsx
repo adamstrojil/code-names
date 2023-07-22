@@ -8,7 +8,6 @@ export const Link = styled(RouterLink)({
   border: "none",
   display: "inline-block",
   fontSize: "16px",
-  margin: "4px 2px 16px",
   cursor: "pointer",
   outline: "none",
   padding: "16px",

@@ -34,8 +34,8 @@ export function OptionsMenu({ setWords }: Props) {
           gap: "10px",
         }}
       >
-        <Box css={{ display: "flex", flexDirection: "row", gap: "15px" }}>
-          <Box css={{ display: "flex", flexDirection: "column" }}>
+        <Box css={{ display: "flex", flexDirection: "row", gap: "16px" }}>
+          <Box display="flex" gap="4px" css={{ flexDirection: "column" }}>
             <label htmlFor={modeSelectId}>Mode:</label>
             <GameModeSelect
               id={modeSelectId}
@@ -43,7 +43,7 @@ export function OptionsMenu({ setWords }: Props) {
               selectedMode={gameVariant}
             />
           </Box>
-          <Box css={{ display: "flex", flexDirection: "column" }}>
+          <Box display="flex" gap="4px" css={{ flexDirection: "column" }}>
             <label htmlFor={languageSelectId}>Language:</label>
             <LanguageSelect
               id={languageSelectId}

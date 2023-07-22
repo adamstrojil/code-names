@@ -819,7 +819,7 @@ export const WORD_BANK = [
     default: "Spike",
     english: "Spike",
     turkish: "Sivri",
-    czech: "Špice",
+    czech: "Špička",
   },
   {
     default: "Scientist",

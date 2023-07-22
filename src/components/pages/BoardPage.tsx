@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { BiQrScan } from "react-icons/bi";
@@ -6,15 +8,16 @@ import { getNewWordCardSet } from "../../lib/utils";
 import { WordCard } from "../../types";
 import { Link, QrCode, TextWithIcon } from "../atoms";
 import { Board, OptionsMenu } from "../organisms";
+import { RxInfoCircled } from "react-icons/rx";
 
 const QrSectionContainer = styled.div({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  marginTop: "2em",
-  marginBottom: "4em",
-  gap: "20px",
+  marginTop: "48px",
+  marginBottom: "64px",
+  gap: "16px",
 });
 
 export function BoardPage() {
@@ -27,6 +30,12 @@ export function BoardPage() {
       <OptionsMenu setWords={setWords} />
       <QrSectionContainer>
         <QrCode text={rolesInCSVString} />
+        <TextWithIcon
+          css={{ fontSize: "0.9rem" }}
+          text={"Currently only scanner from this page is supported."}
+          icon={RxInfoCircled}
+          iconPlacement="left"
+        />
         <Link to={"/map"}>
           <TextWithIcon text="Scan map" icon={BiQrScan} />
         </Link>

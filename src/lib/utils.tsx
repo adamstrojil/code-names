@@ -1,5 +1,9 @@
+import { ReactNode } from "react";
+import { ImCross } from "react-icons/im";
+import { BsCircle } from "react-icons/bs";
+
 import { WORD_BANK } from "../WordBank";
-import { CardRole, Word, WordCard } from "../types/types";
+import { CardRole, Optional, Word, WordCard } from "../types/types";
 
 const get25RandomWords = (wordBank: Array<Word>): Array<Word> =>
   wordBank.sort(() => Math.random() - 0.5).slice(0, 25);
@@ -29,18 +33,19 @@ export const roleToBackgroundColorMap: { [key in CardRole]: string } = {
   black: "#000000",
 };
 
-export const roleToForegroundColorMap: { [key in CardRole]: string } = { // keep hex format for transparency 
+export const roleToForegroundColorMap: { [key in CardRole]: string } = {
+  // keep hex format for transparency!
   neutral: "#000000",
   blue: "#000000",
   red: "#000000",
   black: "#ffffff",
 };
 
-export const roleToSignMap: { [key in CardRole]: string } = {
-  black: "💀",
-  red: "◯",
-  neutral: "",
-  blue: "◯",
+export const roleToSignMap: { [key in CardRole]: Optional<ReactNode> } = {
+  black: <ImCross />,
+  red: <BsCircle />,
+  neutral: null,
+  blue: <BsCircle />,
 };
 
 export const parseRolesFromCSVString = (text: string): Array<CardRole> => {

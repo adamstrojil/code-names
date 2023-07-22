@@ -20,19 +20,18 @@ const StyledButtonCard = styled.button<{
   isRoleRevealed: boolean;
   cardRole: CardRole;
 }>(({ isRoleRevealed, cardRole }) => ({
-  height: "15vh",
+  height: "16vh",
   width: "18vw",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
   margin: "auto",
+  padding: 0,
+  border: "none",
   borderRadius: "5px",
-  cursor: "pointer",
   boxShadow:
     " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-  border: "none",
-  padding: 0,
   ...(isRoleRevealed
     ? {
         backgroundColor: roleToBackgroundColorMap[cardRole],
@@ -41,7 +40,7 @@ const StyledButtonCard = styled.button<{
     : { backgroundColor: "#f1dbba", color: "#000000" }),
 }));
 
-const ContentContainer = styled.span<{ isSingleMode: boolean }>(
+const CardContentContainer = styled.span<{ isSingleMode: boolean }>(
   {
     width: "calc(100% - 28px)",
     height: "calc(100% - 28px)",
@@ -80,7 +79,7 @@ export function Card({
       isRoleRevealed={isRoleRevealed}
       onClick={() => setIsRoleRevealed(true)}
     >
-      <ContentContainer isSingleMode={isSingleMode}>
+      <CardContentContainer isSingleMode={isSingleMode}>
         {!isSingleMode && (
           <>
             <Word
@@ -91,7 +90,7 @@ export function Card({
           </>
         )}
         <Word isBold word={word} showBackground={!isRoleRevealed} />
-      </ContentContainer>
+      </CardContentContainer>
     </StyledButtonCard>
   );
 }

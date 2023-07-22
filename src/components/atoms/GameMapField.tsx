@@ -15,11 +15,11 @@ const StyledField = styled.div(({ isRoleRevealed, role }: Props) => ({
   width: "6vh",
   height: "6vh",
   margin: "auto",
-  fontSize: "1.5rem",
+  fontSize: "1.2rem",
   boxShadow: "inset 0 0 6px #000000",
   borderRadius: "6px",
   transition: "1s ease-in-out",
-  color: isRoleRevealed ? "white" : "transparent",
+  color: isRoleRevealed ? "#eeeeeeee" : "transparent",
   backgroundColor: isRoleRevealed ? roleToBackgroundColorMap[role] : "white",
 }));
 

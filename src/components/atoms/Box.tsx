@@ -33,6 +33,7 @@ type BoxProps = {
   py?: string;
 
   display?: string;
+  gap?: string;
   justifyContent?: string;
 };
 
@@ -64,6 +65,7 @@ const StyledBox = styled.div<BoxProps>(
     py,
     display,
     justifyContent,
+    gap,
   }) => ({
     margin: margin || m,
     marginLeft: marginLeft || ml || mx,
@@ -78,6 +80,7 @@ const StyledBox = styled.div<BoxProps>(
     paddingBottom: paddingBottom || pb || py,
 
     display,
+    gap,
     justifyContent,
   })
 );

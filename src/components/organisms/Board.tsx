@@ -13,9 +13,6 @@ const BoardContainer = styled.div({
   display: "flex",
   flexWrap: "wrap",
   height: "100vh",
-  backgroundColor: "white",
-  paddingRight: "1vw",
-  paddingLeft: "1vw",
 });
 
 export function Board({ words }: Props) {

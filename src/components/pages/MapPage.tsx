@@ -3,6 +3,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { BiQrScan } from "react-icons/bi";
+import { PiCardsDuotone } from "react-icons/pi";
 import { IoIosArrowBack } from "react-icons/io";
 import { parseRolesFromCSVString } from "../../lib/utils";
 import { Optional } from "../../types";
@@ -18,7 +19,7 @@ const MapPageContainer = styled.div({
 
 const HomepageLink = () => (
   <Link to={"/"}>
-    <TextWithIcon icon={IoIosArrowBack} text="Main menu" iconPlacement="left" />
+    <TextWithIcon icon={IoIosArrowBack} text="Main menu" iconPlacement="left" gap="2px"/>
   </Link>
 );
 
@@ -61,8 +62,11 @@ export function MapPage() {
             Scan the code from board
           </Box>
           <QrScanner onScanResult={setScannedText} />
-          <Box mt="1rem">
+          <Box mt="1rem" display="flex" gap="8px">
             <HomepageLink />
+            <Link to={"/board"}>
+              <TextWithIcon text="Go to board" icon={PiCardsDuotone} gap="4px"/>
+            </Link>
           </Box>
         </>
       )}
