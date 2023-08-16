@@ -4,7 +4,7 @@ import { GameState } from "../types";
 const DEFAULT_STATE: GameState = {
   theme: "light",
   language: "english",
-  startingColor: "red",
+  startingColor: "red", //TODO not implemented yet 
   gameVariant: "single",
 };
 

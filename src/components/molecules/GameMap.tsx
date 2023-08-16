@@ -7,7 +7,7 @@ type Props = {
   rolesForRound: Array<CardRole>;
 };
 
-export const MapContainer = styled.div({
+export const MapContainer = styled.div(({theme})=>({
   width: "34vh",
   height: "34vh",
   display: "flex",
@@ -18,8 +18,8 @@ export const MapContainer = styled.div({
   backgroundColor: "black",
   marginBottom: "32px",
   marginTop: "16px",
-  boxShadow: "0 0 0 4px #bcbcbc",
-});
+  boxShadow: `0 0 0 4px ${theme.colors.map.border}`,
+}));
 
 export function GameMap({ rolesForRound, isMapRevealed }: Props) {
   return (

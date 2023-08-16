@@ -8,7 +8,7 @@ type Props = {
 };
 
 const StyledSpan = styled.span<Props>(
-  {
+  ({ showBackground, isBold, isMirrored, theme }) => ({
     width: "100%",
     display: "flex",
     alignItems: "center",
@@ -17,17 +17,18 @@ const StyledSpan = styled.span<Props>(
     borderRadius: "4px",
     fontFamily: '"Outfit", sans-serif',
     textTransform: "capitalize",
-  },
-  ({ showBackground, isBold, isMirrored }) => ({
     fontWeight: isBold ? 500 : 200,
     transform: isMirrored ? "rotate(180deg)" : undefined,
     ...(showBackground
       ? {
-          backgroundColor: "white",
+          backgroundColor: theme.colors.card.textBackground,
           marginTop: "4px",
           padding: "4px 0px 8px 0px",
         }
-      : {}),
+      : {
+          padding: showBackground === false ? "4px 0px 8px 0px" : 0,
+          marginTop: "4px",
+        }),
   })
 );
 

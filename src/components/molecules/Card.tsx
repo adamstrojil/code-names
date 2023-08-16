@@ -3,8 +3,8 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 
 import {
-  roleToBackgroundColorMap,
-  roleToForegroundColorMap,
+  mapRoleToBackgroundColor,
+  mapRoleToForegroundColor,
 } from "../../lib/utils";
 import { CardRole, GameVariant, Language, Word as WordType } from "../../types";
 import { Line, Word } from "../atoms";
@@ -19,7 +19,7 @@ type Props = {
 const StyledButtonCard = styled.button<{
   isRoleRevealed: boolean;
   cardRole: CardRole;
-}>(({ isRoleRevealed, cardRole }) => ({
+}>(({ isRoleRevealed, cardRole, theme }) => ({
   height: "16vh",
   width: "18vw",
   display: "flex",
@@ -30,31 +30,32 @@ const StyledButtonCard = styled.button<{
   padding: 0,
   border: "none",
   borderRadius: "5px",
-  boxShadow:
-    " 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  boxShadow: ` 0 4px 8px 0 ${theme.colors.card.shadow}32, 0 6px 20px 0 ${theme.colors.card.shadow}32`,
+
   ...(isRoleRevealed
     ? {
-        backgroundColor: roleToBackgroundColorMap[cardRole],
-        color: `${roleToForegroundColorMap[cardRole]}33`,
+        backgroundColor: mapRoleToBackgroundColor(cardRole, theme),
+        color: mapRoleToForegroundColor(cardRole, theme),
       }
-    : { backgroundColor: "#f1dbba", color: "#000000" }),
+    : {
+        backgroundColor: theme.colors.card.hidden,
+        color: theme.colors.card.text,
+      }),
 }));
 
 const CardContentContainer = styled.span<{ isSingleMode: boolean }>(
-  {
+  ({ isSingleMode, theme }) => ({
     width: "calc(100% - 28px)",
     height: "calc(100% - 28px)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     margin: "5px",
-    border: "1px solid #8e775488",
+    border: `1px solid ${theme.colors.card.border}`,
     borderRadius: "5px",
     padding: "8px",
     gap: "2px",
     fontWeight: "bolder",
-  },
-  ({ isSingleMode }) => ({
     justifyContent: isSingleMode ? "center" : "space-between",
   })
 );

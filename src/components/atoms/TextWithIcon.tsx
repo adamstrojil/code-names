@@ -12,12 +12,13 @@ type Props = {
   as?: ElementType;
 };
 
-const StyledSpan = styled.span(({ gap }: { gap: string }) => ({
+const StyledSpan = styled.span<Partial<Props>>(({ gap, theme }) => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
   gap,
+  color: theme.colors.text,
 }));
 
 export function TextWithIcon({

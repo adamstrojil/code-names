@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { Link as RouterLink } from "react-router-dom";
 
-export const Link = styled(RouterLink)({
-  backgroundColor: "#efefef",
+export const Link = styled(RouterLink)(({theme})=>({
+  backgroundColor: theme.colors.buttonBackground,
   borderRadius: "5px",
-  color: "black",
+  color: theme.colors.text,
   border: "none",
   display: "inline-block",
   fontSize: "16px",
@@ -12,4 +12,4 @@ export const Link = styled(RouterLink)({
   outline: "none",
   padding: "16px",
   textDecoration: "none",
-});
+}));

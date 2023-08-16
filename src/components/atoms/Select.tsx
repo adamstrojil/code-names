@@ -12,10 +12,10 @@ type Props<T> = {
   onChange: (value: T) => void;
 };
 
-const StyledSelect = styled.select({
+const StyledSelect = styled.select(({ theme }) => ({
   borderRadius: "5px",
-  backgroundColor: "#efefef",
-  color: "#000000",
+  backgroundColor: theme.colors.buttonBackground,
+  color: theme.colors.text,
   border: "none",
   textAlign: "center",
   display: "inline-block",
@@ -23,7 +23,7 @@ const StyledSelect = styled.select({
   cursor: "pointer",
   minWidth: "100px",
   padding: "5px",
-});
+}));
 
 export function Select<T extends string>({
   onChange,

@@ -9,6 +9,7 @@ import { parseRolesFromCSVString } from "../../lib/utils";
 import { Optional } from "../../types";
 import { Box, Button, Link, QrScanner, TextWithIcon } from "../atoms";
 import { GameMap } from "../molecules";
+import { useTheme } from "../../theme/theme";
 
 const MapPageContainer = styled.div({
   display: "flex",
@@ -19,14 +20,19 @@ const MapPageContainer = styled.div({
 
 const HomepageLink = () => (
   <Link to={"/"}>
-    <TextWithIcon icon={IoIosArrowBack} text="Main menu" iconPlacement="left" gap="2px"/>
+    <TextWithIcon
+      icon={IoIosArrowBack}
+      text="Main menu"
+      iconPlacement="left"
+      gap="2px"
+    />
   </Link>
 );
 
 export function MapPage() {
   const [scannedText, setScannedText] = useState<Optional<string>>(null);
   const [isMapRevealed, setIsMapRevealed] = useState<boolean>(false);
-
+  const { theme } = useTheme();
   return (
     <MapPageContainer>
       {scannedText ? (
@@ -58,14 +64,18 @@ export function MapPage() {
       ) : (
         <>
           {/* TODO: Will be a separate Text atom component */}
-          <Box as="h2" css={{ fontWeight: 300 }}>
+          <Box as="h2" css={{ fontWeight: 300, color: theme.colors.text }}>
             Scan the code from board
           </Box>
           <QrScanner onScanResult={setScannedText} />
           <Box mt="1rem" display="flex" gap="8px">
             <HomepageLink />
             <Link to={"/board"}>
-              <TextWithIcon text="Go to board" icon={PiCardsDuotone} gap="4px"/>
+              <TextWithIcon
+                text="Go to board"
+                icon={PiCardsDuotone}
+                gap="4px"
+              />
             </Link>
           </Box>
         </>

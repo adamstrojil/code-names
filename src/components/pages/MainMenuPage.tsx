@@ -5,6 +5,7 @@ import { GiBookmark } from "react-icons/gi";
 import boardImg from "../../assets/board.png";
 import mapImg from "../../assets/map.png";
 import { Box, MainMenuLink, TextWithIcon } from "../atoms";
+import { useTheme } from "../../theme/theme";
 
 const CenteredContainer = styled.div({
   display: "flex",
@@ -24,6 +25,9 @@ const MainMenuLinkGroup = styled.div({
 });
 
 export function MainMenuPage() {
+  const {
+    theme,
+  } = useTheme();
   return (
     <>
       <CenteredContainer>
@@ -32,11 +36,12 @@ export function MainMenuPage() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            // backgroundColor: theme.colors.gameBackground,
           }}
         >
           <Box
             as="h1"
-            css={{ fontSize: "6vh", fontWeight: "400", textAlign: "center" }}
+            css={{ fontSize: "6vh", fontWeight: "400", textAlign: "center", color: theme.colors.text }}
           >
             Code names
           </Box>
@@ -82,7 +87,7 @@ export function MainMenuPage() {
               gap="6px"
               css={{ textAlign: "left", margin: 0, fontWeight: 500 }}
             />
-            <article>
+            <article style={{color: theme.colors.text}}>
               <p>
                 Codenames is a game played by 4 or more players in which players
                 are split into two teams, red and blue, and guess words based on

@@ -1,3 +1,5 @@
+import { ThemeName } from "../theme/theme";
+
 export type TeamColor = "blue" | "red";
 
 export type Optional<T> = T | null;
@@ -17,10 +19,8 @@ export type Word = {
   [key in Language]: string;
 };
 
-export type Theme = "light" | "dark";
-
 export type GameState = {
-  theme: Theme;
+  theme: ThemeName;
   language: Language;
   gameVariant: GameVariant;
   startingColor: TeamColor;

@@ -8,6 +8,7 @@ import { getNewWordCardSet } from "../../lib/utils";
 import { WordCard } from "../../types";
 import { Box, Button, TextWithIcon } from "../atoms";
 import { GameModeSelect, LanguageSelect } from "../molecules";
+import { useTheme } from "../../theme/theme";
 
 type Props = {
   setWords: (words: Array<WordCard>) => void;
@@ -21,6 +22,7 @@ export function OptionsMenu({ setWords }: Props) {
     updateContext,
     gameState: { gameVariant, language },
   } = useContext(GameContext);
+  const { theme } = useTheme();
   return (
     <>
       <Box
@@ -36,7 +38,9 @@ export function OptionsMenu({ setWords }: Props) {
       >
         <Box css={{ display: "flex", flexDirection: "row", gap: "16px" }}>
           <Box display="flex" gap="4px" css={{ flexDirection: "column" }}>
-            <label htmlFor={modeSelectId}>Mode:</label>
+            <label htmlFor={modeSelectId} style={{ color: theme.colors.text }}>
+              Mode:
+            </label>
             <GameModeSelect
               id={modeSelectId}
               onSelected={(gameVariant) => updateContext({ gameVariant })}
@@ -44,7 +48,12 @@ export function OptionsMenu({ setWords }: Props) {
             />
           </Box>
           <Box display="flex" gap="4px" css={{ flexDirection: "column" }}>
-            <label htmlFor={languageSelectId}>Language:</label>
+            <label
+              htmlFor={languageSelectId}
+              style={{ color: theme.colors.text }}
+            >
+              Language:
+            </label>
             <LanguageSelect
               id={languageSelectId}
               onSelected={(language) => updateContext({ language })}
