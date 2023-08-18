@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/code-names/static/css/main.33d372b8.css",
-    "main.js": "/code-names/static/js/main.6dffcbdb.js",
-    "static/js/496.219a0753.chunk.js": "/code-names/static/js/496.219a0753.chunk.js",
-    "static/media/map.png": "/code-names/static/media/map.ab0801ac739881b01f35.png",
-    "static/media/board.png": "/code-names/static/media/board.7d68ecfb6193643f99fb.png",
-    "index.html": "/code-names/index.html",
-    "main.33d372b8.css.map": "/code-names/static/css/main.33d372b8.css.map",
-    "main.6dffcbdb.js.map": "/code-names/static/js/main.6dffcbdb.js.map",
-    "496.219a0753.chunk.js.map": "/code-names/static/js/496.219a0753.chunk.js.map"
+    "main.css": "/code-words/static/css/main.33d372b8.css",
+    "main.js": "/code-words/static/js/main.3b97e8de.js",
+    "static/js/496.219a0753.chunk.js": "/code-words/static/js/496.219a0753.chunk.js",
+    "static/media/map.png": "/code-words/static/media/map.ab0801ac739881b01f35.png",
+    "static/media/board.png": "/code-words/static/media/board.7d68ecfb6193643f99fb.png",
+    "index.html": "/code-words/index.html",
+    "main.33d372b8.css.map": "/code-words/static/css/main.33d372b8.css.map",
+    "main.3b97e8de.js.map": "/code-words/static/js/main.3b97e8de.js.map",
+    "496.219a0753.chunk.js.map": "/code-words/static/js/496.219a0753.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.33d372b8.css",
-    "static/js/main.6dffcbdb.js"
+    "static/js/main.3b97e8de.js"
   ]
 }
