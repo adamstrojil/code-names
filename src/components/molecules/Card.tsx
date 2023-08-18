@@ -28,7 +28,7 @@ const StyledButtonCard = styled.button<{
   cardRole: CardRole;
 }>(({ isRoleRevealed, cardRole, theme }) => ({
   position: "relative",
-  transition: "1s",
+  transition: "cubic-bezier(1, 0.01, 0.47, 0.99) 1s",
   height: "16vh",
   width: "18vw",
   display: "flex",
@@ -48,7 +48,8 @@ const StyledButtonCard = styled.button<{
   backgroundColor: theme.colors.card.hidden,
   "&:before": {
     transition: "cubic-bezier(1, 0.01, 0.47, 0.99) 1s",
-    transitionProperty: "transform, background-color, opacity, width, height",
+    transitionProperty: "transform, background-color, opacity",
+    willChange: "transform, background-color, opacity",
 
     // backgroundImage: `url(${
     //   cardRole === "blue"
@@ -67,13 +68,13 @@ const StyledButtonCard = styled.button<{
     borderRadius: "10px",
     border: `0px solid #222`,
     position: "absolute",
-    top: "50%",
-    left: "50%",
-    width: isRoleRevealed ? "100%" : "200%",
-    height: isRoleRevealed ? "100%" : "200%",
+    width: "100%",
+    height: "100%",
     opacity: isRoleRevealed ? 1 : 0,
     zIndex: isRoleRevealed ? 1 : -1,
-    transform: `translate(-50%, -50%) rotate(${Math.floor(Math.random() * 11) - 5}deg) `,
+    transform: `scale(${isRoleRevealed ? "1" : "2"}) rotate(${
+      Math.floor(Math.random() * 11) - 5
+    }deg) `,
     backgroundColor: isRoleRevealed
       ? mapRoleToBackgroundColor(cardRole, theme)
       : theme.colors.card.hidden,

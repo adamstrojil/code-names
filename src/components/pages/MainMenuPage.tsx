@@ -143,11 +143,11 @@ export function MainMenuPage() {
                 css={{ textAlign: "left", margin: 0, fontWeight: 500 }}
               /> */}
               <article style={{ color: theme.colors.text }}>
-                <TextWithIcon
+                {/* <TextWithIcon
                   icon={PiWarning}
                   text={"Important: "}
                   iconPlacement="left"
-                />
+                /> */}
                 <p>
                   The game is inspired by the mechanics of Codenames. This
                   website is not affiliated with CGE, the editor of Codenames.
