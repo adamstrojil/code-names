@@ -6,9 +6,10 @@ import { MdOutlineRestartAlt } from "react-icons/md";
 import { GameContext } from "../../context/GameContext";
 import { getNewWordCardSet } from "../../lib/utils";
 import { WordCard } from "../../types";
-import { Box, Button, TextWithIcon } from "../atoms";
-import { GameModeSelect, LanguageSelect } from "../molecules";
+import { Box, Button, Link, TextWithIcon } from "../atoms";
+import { GameModeSelect, LanguageSelect, ThemeSelect } from "../molecules";
 import { useTheme } from "../../theme/theme";
+import { IoIosArrowBack } from "react-icons/io";
 
 type Props = {
   setWords: (words: Array<WordCard>) => void;
@@ -16,6 +17,7 @@ type Props = {
 
 const languageSelectId = "languageSelect";
 const modeSelectId = "modeSelect";
+const themeSelectId = "themeSelect";
 
 export function OptionsMenu({ setWords }: Props) {
   const {
@@ -37,6 +39,14 @@ export function OptionsMenu({ setWords }: Props) {
         }}
       >
         <Box css={{ display: "flex", flexDirection: "row", gap: "16px" }}>
+        <Link to={"/"}>
+            <TextWithIcon
+              icon={IoIosArrowBack}
+              text="Main menu"
+              iconPlacement="left"
+              gap="2px"
+            />
+          </Link>
           <Box display="flex" gap="4px" css={{ flexDirection: "column" }}>
             <label htmlFor={modeSelectId} style={{ color: theme.colors.text }}>
               Mode:
@@ -60,6 +70,13 @@ export function OptionsMenu({ setWords }: Props) {
               selectedLanguage={language}
             />
           </Box>
+          <Box display="flex" gap="4px" css={{ flexDirection: "column" }}>
+            <label htmlFor={themeSelectId} style={{ color: theme.colors.text }}>
+              Theme:
+            </label>
+            <ThemeSelect id={themeSelectId} />
+          </Box>
+          {/* <ThemeButton /> */}
           <Button onClick={() => setWords(getNewWordCardSet())}>
             <TextWithIcon
               text="New Game"

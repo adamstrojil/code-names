@@ -2,13 +2,12 @@
 
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { BiQrScan } from "react-icons/bi";
 
+import { RxInfoCircled } from "react-icons/rx";
 import { getNewWordCardSet } from "../../lib/utils";
 import { WordCard } from "../../types";
-import { Link, QrCode, TextWithIcon } from "../atoms";
+import { QrCode, TextWithIcon } from "../atoms";
 import { Board, OptionsMenu } from "../organisms";
-import { RxInfoCircled } from "react-icons/rx";
 
 const QrSectionContainer = styled.div({
   display: "flex",
@@ -36,9 +35,20 @@ export function BoardPage() {
           icon={RxInfoCircled}
           iconPlacement="left"
         />
-        <Link to={"/map"}>
-          <TextWithIcon text="Scan map" icon={BiQrScan} />
-        </Link>
+
+        {/* <Box mt="1rem" display="flex" gap="8px"> */}
+          {/* <Link to={"/"}>
+            <TextWithIcon
+              icon={IoIosArrowBack}
+              text="Main menu"
+              iconPlacement="left"
+              gap="2px"
+            />
+          </Link> */}
+          {/* <Link to={"/map"}>
+            <TextWithIcon text="Scan map" icon={BiQrScan} />
+          </Link> */}
+        {/* </Box> */}
       </QrSectionContainer>
     </>
   );

@@ -19,6 +19,7 @@ const StyledSpan = styled.span<Props>(
     textTransform: "capitalize",
     fontWeight: isBold ? 500 : 200,
     transform: isMirrored ? "rotate(180deg)" : undefined,
+    transition: "linear 0.5s",
     ...(showBackground
       ? {
           backgroundColor: theme.colors.card.textBackground,

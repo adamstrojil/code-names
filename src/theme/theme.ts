@@ -16,7 +16,7 @@ export type MyTheme = {
   card: {
     line: string;
     text: string;
-    inversedText: string, //TODO refactor
+    inversedText: string; //TODO refactor
     textBackground: string;
     hidden: string;
     neutral: string;
@@ -34,8 +34,8 @@ export type MyTheme = {
   qr: {
     // background: string;
     // foreground: string;
-    border: string,
-  }
+    border: string;
+  };
 };
 
 const lightTheme: Theme = {
@@ -67,8 +67,7 @@ const lightTheme: Theme = {
       // background: colors.white,
       // foreground: colors.black,
       border: colors.white,
-
-    }
+    },
   },
 };
 
@@ -101,7 +100,7 @@ const darkTheme: Theme = {
       // background: colors.white,
       // foreground: colors.black,
       border: colors.white,
-    }
+    },
   },
 };
 
@@ -120,5 +119,9 @@ export const useTheme = () => {
     updateContext({ theme: themeName === "light" ? "dark" : "light" });
   };
 
-  return { theme: themeNametoTheme[themeName], toggleTheme, themeName };
+  const changeTheme = (themeName?: ThemeName) => {
+    themeName ? updateContext({ theme: themeName }) : toggleTheme();
+  };
+
+  return { theme: themeNametoTheme[themeName], changeTheme, themeName };
 };

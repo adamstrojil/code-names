@@ -3,19 +3,18 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { BiQrScan } from "react-icons/bi";
-import { PiCardsDuotone } from "react-icons/pi";
 import { IoIosArrowBack } from "react-icons/io";
 import { parseRolesFromCSVString } from "../../lib/utils";
 import { Optional } from "../../types";
 import { Box, Button, Link, QrScanner, TextWithIcon } from "../atoms";
-import { GameMap } from "../molecules";
+import { GameMap, ThemeButton } from "../molecules";
 import { useTheme } from "../../theme/theme";
 
 const MapPageContainer = styled.div({
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
-  marginTop: "10px",
+  // marginTop: "10px",
 });
 
 const HomepageLink = () => (
@@ -35,9 +34,12 @@ export function MapPage() {
   const { theme } = useTheme();
   return (
     <MapPageContainer>
+      <Box mb="32px">
+        <ThemeButton />
+      </Box>
       {scannedText ? (
         <>
-          <HomepageLink />
+          {/* <HomepageLink /> */}
           <GameMap
             isMapRevealed={isMapRevealed}
             rolesForRound={parseRolesFromCSVString(scannedText)}
@@ -57,7 +59,10 @@ export function MapPage() {
               <Box as="h2" css={{ color: "green", fontWeight: 300 }}>
                 Map Ready!
               </Box>
+              {/* <Box mt="1rem" display="flex" gap="8px">
+                <HomepageLink /> */}
               <Button onClick={() => setIsMapRevealed(true)}>Reveal Map</Button>
+              {/* </Box> */}
             </>
           )}
         </>
@@ -70,13 +75,13 @@ export function MapPage() {
           <QrScanner onScanResult={setScannedText} />
           <Box mt="1rem" display="flex" gap="8px">
             <HomepageLink />
-            <Link to={"/board"}>
+            {/* <Link to={"/board"}>
               <TextWithIcon
                 text="Go to board"
                 icon={PiCardsDuotone}
                 gap="4px"
               />
-            </Link>
+            </Link> */}
           </Box>
         </>
       )}

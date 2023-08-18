@@ -1251,7 +1251,7 @@ export const WORD_BANK = [
     default: "Boot",
     english: "Boot",
     turkish: "Bot",
-    czech: "Boot",
+    czech: "Bota",
   },
   {
     default: "Ghost",

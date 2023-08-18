@@ -48,20 +48,19 @@ export const mapRoleToBackgroundColor = (
   return roleToBackgroundColorMap[role];
 };
 
-export const mapRoleToForegroundColor = (
-  role: CardRole,
-  theme: Theme
-): string => {
-  const roleToForegroundColorMap: { [key in CardRole]: string } = {
-    // keep hex format for transparency!
-    neutral: theme.colors.card.text,
-    blue: theme.colors.card.text,
-    red: theme.colors.card.text,
-    black: theme.colors.card.inversedText,
-  };
+// export const mapRoleToForegroundColor = (
+//   role: CardRole,
+//   theme: Theme
+// ): string => {
+//   const roleToForegroundColorMap: { [key in CardRole]: string } = {
+//     neutral: theme.colors.card.text,
+//     blue: theme.colors.card.text,
+//     red: theme.colors.card.text,
+//     black: theme.colors.card.inversedText,
+//   };
 
-  return `${roleToForegroundColorMap[role]}33`;
-};
+//   return `${roleToForegroundColorMap[role]}33`;
+// };
 
 // export const roleToForegroundColorMap: { [key in CardRole]: string } = {
 //   neutral: "#000000",

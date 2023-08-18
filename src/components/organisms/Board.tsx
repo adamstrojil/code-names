@@ -13,6 +13,7 @@ const BoardContainer = styled.div({
   display: "flex",
   flexWrap: "wrap",
   height: "100vh",
+  overflowX: "clip",
 });
 
 export function Board({ words }: Props) {

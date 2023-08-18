@@ -5,6 +5,7 @@ export const Link = styled(RouterLink)(({theme})=>({
   backgroundColor: theme.colors.buttonBackground,
   borderRadius: "5px",
   color: theme.colors.text,
+  transition: "1s",
   border: "none",
   display: "inline-block",
   fontSize: "16px",

@@ -1,3 +1,3 @@
-# Code Names
+# Code Words
 
 Description coming soon!
