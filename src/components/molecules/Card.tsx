@@ -55,28 +55,32 @@ const StyledButtonCard = styled.button<{
     willChange: "transform, background-color, opacity",
 
     backgroundImage: `url(${
-      cardRole === "blue"
+      cardRole === "blue" || cardRole === "red"
         ? Math.random() < 0.5
           ? blueAgentFemale
           : blueAgentMale
-        : cardRole === "red"
-        ? Math.random() < 0.5
-          ? redAgentFemale
-          : redAgentMale
-        : cardRole === "neutral"
+        : // : cardRole === "red"
+        // ? Math.random() < 0.5
+        //   ? redAgentFemale
+        //   : redAgentMale
+        cardRole === "neutral"
         ? Math.random() < 0.5
           ? bystanderMale
           : bystanderFemale
         : assassin
     })`,
-    filter: cardRole === "neutral" ? "saturate(0.4)" : "",
+    filter:
+      cardRole === "neutral"
+        ? "saturate(0.5)"
+        : cardRole === "red"
+        ? "hue-rotate(140deg) contrast(1.6) saturate(0.7)"
+        : "",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "top center",
 
     content: '""',
     borderRadius: "10px",
-    border: `0px solid #222`,
     position: "absolute",
     width: "100%",
     height: "100%",
@@ -84,11 +88,13 @@ const StyledButtonCard = styled.button<{
     zIndex: isRoleRevealed ? 1 : -1,
     transform: `scale(${isRoleRevealed ? "1" : "2"}) rotate(${
       Math.floor(Math.random() * 11) - 5
-    }deg) `,
+    }deg) scaleX(${cardRole === "red" ? "-1" : "1"})`,
     backgroundColor: isRoleRevealed
       ? mapRoleToBackgroundColor(cardRole, theme)
       : theme.colors.card.hidden,
-    boxShadow: ` 0 4px 8px 0 ${theme.colors.card.shadow}32, 0 6px 20px 0 ${theme.colors.card.shadow}32`,
+    boxShadow: ` 0 4px 8px 0 ${theme.colors.card.shadow}32, 0 6px 20px 0 ${
+      theme.colors.card.shadow
+    }32 ${cardRole !== "red" ? ",inset 0px 0px 50px #00000099" : ""}`,
   },
 }));
 
