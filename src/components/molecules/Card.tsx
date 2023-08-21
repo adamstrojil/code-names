@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 import styled from "@emotion/styled";
-// import blueAgent from "../../assets/local/blueAgent.png";
-// import redAgent from "../../assets/local/redAgent.png";
-// import blueAgent2 from "../../assets/local/blueAgent2.png";
-// import redAgent2 from "../../assets/local/redAgent2.png";
-// import blackAgent from "../../assets/local/blackAgent.png";
-// import bystander from "../../assets/local/bystander.png";
-// import bystander2 from "../../assets/local/bystander2.png";
+import blueAgentFemale from "../../assets/agentImages/blueAgentFemale.png";
+import redAgentFemale from "../../assets/agentImages/redAgentFemale.png";
+import blueAgentMale from "../../assets/agentImages/blueAgentMale.png";
+import redAgentMale from "../../assets/agentImages/redAgentMale.png";
+import assassin from "../../assets/agentImages/assassin.png";
+import bystanderFemale from "../../assets/agentImages/bystanderFemale.png";
+import bystanderMale from "../../assets/agentImages/bystanderMale.png";
 
 import {
   mapRoleToBackgroundColor,
@@ -46,23 +46,33 @@ const StyledButtonCard = styled.button<{
     ? theme.colors.card.text //mapRoleToForegroundColor(cardRole, theme)
     : theme.colors.card.text,
   backgroundColor: theme.colors.card.hidden,
+  "&:hover": {
+    cursor: isRoleRevealed ? "default" : "pointer",
+  },
   "&:before": {
     transition: "cubic-bezier(1, 0.01, 0.47, 0.99) 1s",
     transitionProperty: "transform, background-color, opacity",
     willChange: "transform, background-color, opacity",
 
-    // backgroundImage: `url(${
-    //   cardRole === "blue"
-    //     ? Math.random() < 0.5 ? blueAgent : blueAgent2
-    //     : cardRole === "red"
-    //     ? Math.random() < 0.5 ? redAgent : redAgent2
-    //     : cardRole === "neutral"
-    //     ? Math.random() < 0.5 ? bystander : bystander2
-    //     : blackAgent
-    // })`,
-    // backgroundSize: "cover",
-    // backgroundRepeat: "no-repeat",
-    // backgroundPosition: "top center",
+    backgroundImage: `url(${
+      cardRole === "blue"
+        ? Math.random() < 0.5
+          ? blueAgentFemale
+          : blueAgentMale
+        : cardRole === "red"
+        ? Math.random() < 0.5
+          ? redAgentFemale
+          : redAgentMale
+        : cardRole === "neutral"
+        ? Math.random() < 0.5
+          ? bystanderMale
+          : bystanderFemale
+        : assassin
+    })`,
+    filter: cardRole === "neutral" ? "saturate(0.4)" : "",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "top center",
 
     content: '""',
     borderRadius: "10px",

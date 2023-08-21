@@ -240,10 +240,10 @@ export const WORD_BANK = [
     czech: "Upustit",
   },
   {
-    default: "Pheonix",
-    english: "Pheonix",
+    default: "Phoenix",
+    english: "Phoenix",
     turkish: "Anka kuşu",
-    czech: "Pheonix",
+    czech: "Fénix",
   },
   {
     default: "Marble",
@@ -1587,7 +1587,7 @@ export const WORD_BANK = [
     default: "Olive",
     english: "Olive",
     turkish: "Zeytin",
-    czech: "Olivový",
+    czech: "Oliva",
   },
   {
     default: "Grace",
@@ -1611,7 +1611,7 @@ export const WORD_BANK = [
     default: "Row",
     english: "Row",
     turkish: "Sıra",
-    czech: "Řádek",
+    czech: "Řada",
   },
   {
     default: "Pistol",
@@ -1641,7 +1641,7 @@ export const WORD_BANK = [
     default: "Vet",
     english: "Vet",
     turkish: "Veteriner",
-    czech: "Vet",
+    czech: "Veterinář",
   },
   {
     default: "Beach",

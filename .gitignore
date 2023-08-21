@@ -11,7 +11,8 @@
 # production
 /build
 
-/src/assets/local
+/src/assets/original
+/src/assets/old
 
 # misc
 .DS_Store
