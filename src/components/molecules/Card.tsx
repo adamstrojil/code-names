@@ -1,18 +1,13 @@
 import { useState } from "react";
 
-import styled from "@emotion/styled";
-import blueAgentFemale from "../../assets/agentImages/blueAgentFemale.png";
-import redAgentFemale from "../../assets/agentImages/redAgentFemale.png";
-import blueAgentMale from "../../assets/agentImages/blueAgentMale.png";
-import redAgentMale from "../../assets/agentImages/redAgentMale.png";
+import styled, { CSSObject } from "@emotion/styled";
 import assassin from "../../assets/agentImages/assassin.png";
+import blueAgentFemale from "../../assets/agentImages/blueAgentFemale.png";
+import blueAgentMale from "../../assets/agentImages/blueAgentMale.png";
 import bystanderFemale from "../../assets/agentImages/bystanderFemale.png";
 import bystanderMale from "../../assets/agentImages/bystanderMale.png";
 
-import {
-  mapRoleToBackgroundColor,
-  // mapRoleToForegroundColor,
-} from "../../lib/utils";
+import { pickRandomly } from "../../lib/utils";
 import { CardRole, GameVariant, Language, Word as WordType } from "../../types";
 import { Line, Word } from "../atoms";
 
@@ -23,80 +18,78 @@ type Props = {
   language: Language;
 };
 
+const getRoleSpecificStyles = (
+  role: CardRole,
+  isRevealed: boolean
+): CSSObject => {
+  const cardImageUrl =
+    role === "black"
+      ? assassin
+      : role === "neutral"
+      ? pickRandomly(bystanderMale, bystanderFemale)
+      : pickRandomly(blueAgentMale, blueAgentFemale);
+
+  const filter =
+    role === "red"
+      ? "hue-rotate(140deg) contrast(1.6) saturate(0.7)"
+      : undefined;
+
+  const scaleTransform = `scale(${isRevealed ? "1" : "2"})`;
+  const flipImageWhenRed = `scaleX(${role === "red" ? "-1" : "1"})`;
+  const rotateCardSlightly = `rotate(${Math.floor(Math.random() * 11) - 5}deg)`;
+
+  return {
+    filter,
+    backgroundImage: `url(${cardImageUrl})`,
+    transform: `${scaleTransform} ${flipImageWhenRed} ${rotateCardSlightly}`,
+  };
+};
+
 const StyledButtonCard = styled.button<{
   isRoleRevealed: boolean;
   cardRole: CardRole;
-}>(({ isRoleRevealed, cardRole, theme }) => ({
-  position: "relative",
-  transition: "cubic-bezier(1, 0.01, 0.47, 0.99) 1s",
-  height: "16vh",
-  width: "18vw",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  margin: "auto",
-  padding: 0,
-  border: "none",
-  borderRadius: "10px",
-  boxShadow: isRoleRevealed
-    ? "none"
-    : `0 4px 8px 0 ${theme.colors.card.shadow}32, 0 6px 20px 0 ${theme.colors.card.shadow}32`,
-  color: isRoleRevealed
-    ? theme.colors.card.text //mapRoleToForegroundColor(cardRole, theme)
-    : theme.colors.card.text,
-  backgroundColor: theme.colors.card.hidden,
-  "&:hover": {
-    cursor: isRoleRevealed ? "default" : "pointer",
-  },
-  "&:before": {
-    transition: "cubic-bezier(1, 0.01, 0.47, 0.99) 1s",
-    transitionProperty: "transform, background-color, opacity",
-    willChange: "transform, background-color, opacity",
+}>(({ isRoleRevealed, cardRole, theme }) => {
+  const transition = "cubic-bezier(1, 0.01, 0.47, 0.99) 1s";
+  const boxShadow = `0 4px 8px 0 ${theme.colors.card.shadow}32, 0 6px 20px 0 ${theme.colors.card.shadow}32`;
 
-    backgroundImage: `url(${
-      cardRole === "blue" || cardRole === "red"
-        ? Math.random() < 0.5
-          ? blueAgentFemale
-          : blueAgentMale
-        : // : cardRole === "red"
-        // ? Math.random() < 0.5
-        //   ? redAgentFemale
-        //   : redAgentMale
-        cardRole === "neutral"
-        ? Math.random() < 0.5
-          ? bystanderMale
-          : bystanderFemale
-        : assassin
-    })`,
-    filter:
-      cardRole === "neutral"
-        ? "saturate(0.5)"
-        : cardRole === "red"
-        ? "hue-rotate(140deg) contrast(1.6) saturate(0.7)"
-        : "",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "top center",
-
-    content: '""',
+  return {
+    transition,
+    backgroundColor: theme.colors.card.hidden,
+    color: theme.colors.card.text,
+    display: "flex",
+    position: "relative",
+    height: "16vh",
+    width: "18vw",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: "auto",
+    padding: 0,
+    border: "none",
     borderRadius: "10px",
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    opacity: isRoleRevealed ? 1 : 0,
-    zIndex: isRoleRevealed ? 1 : -1,
-    transform: `scale(${isRoleRevealed ? "1" : "2"}) rotate(${
-      Math.floor(Math.random() * 11) - 5
-    }deg) scaleX(${cardRole === "red" ? "-1" : "1"})`,
-    backgroundColor: isRoleRevealed
-      ? mapRoleToBackgroundColor(cardRole, theme)
-      : theme.colors.card.hidden,
-    boxShadow: ` 0 4px 8px 0 ${theme.colors.card.shadow}32, 0 6px 20px 0 ${
-      theme.colors.card.shadow
-    }32 ${cardRole !== "red" ? ",inset 0px 0px 50px #00000099" : ""}`,
-  },
-}));
+    boxShadow: isRoleRevealed ? "none" : boxShadow,
+    "&:hover": {
+      cursor: isRoleRevealed ? "default" : "pointer",
+    },
+    "&:before": {
+      boxShadow,
+      transition,
+      content: '""',
+      transitionProperty: "transform, background-color, opacity",
+      willChange: "transform, background-color, opacity",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "top center",
+      borderRadius: "10px",
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      opacity: isRoleRevealed ? 1 : 0,
+      zIndex: isRoleRevealed ? 1 : -1,
+      ...getRoleSpecificStyles(cardRole, isRoleRevealed),
+    },
+  };
+});
 
 const CardContentContainer = styled.span<{ isSingleMode: boolean }>(
   ({ isSingleMode, theme }) => ({
@@ -132,6 +125,7 @@ export function Card({
   return (
     <StyledButtonCard
       cardRole={cardRole}
+      disabled={isRoleRevealed}
       isRoleRevealed={isRoleRevealed}
       onClick={() => setIsRoleRevealed(true)}
     >
@@ -145,7 +139,7 @@ export function Card({
             <Line />
           </>
         )}
-        <Word isBold word={word} showBackground={true} />
+        <Word isBold showBackground word={word} />
       </CardContentContainer>
     </StyledButtonCard>
   );

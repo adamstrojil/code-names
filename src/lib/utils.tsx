@@ -27,13 +27,6 @@ const assignRoles = (words: Array<Word>): Array<WordCard> => {
   return assigned.sort(() => Math.random() - 0.5);
 };
 
-// export const roleToBackgroundColorMap: { [key in CardRole]: string } = {
-//   neutral: "#efefef",
-//   blue: "#7acaff",
-//   red: "#ff5d56",
-//   black: "#000000",
-// };
-
 export const mapRoleToBackgroundColor = (
   role: CardRole,
   theme: Theme
@@ -48,27 +41,6 @@ export const mapRoleToBackgroundColor = (
   return roleToBackgroundColorMap[role];
 };
 
-// export const mapRoleToForegroundColor = (
-//   role: CardRole,
-//   theme: Theme
-// ): string => {
-//   const roleToForegroundColorMap: { [key in CardRole]: string } = {
-//     neutral: theme.colors.card.text,
-//     blue: theme.colors.card.text,
-//     red: theme.colors.card.text,
-//     black: theme.colors.card.inversedText,
-//   };
-
-//   return `${roleToForegroundColorMap[role]}33`;
-// };
-
-// export const roleToForegroundColorMap: { [key in CardRole]: string } = {
-//   neutral: "#000000",
-//   blue: "#000000",
-//   red: "#000000",
-//   black: "#ffffff",
-// };
-
 export const roleToSignMap: { [key in CardRole]: Optional<ReactNode> } = {
   black: <ImCross />,
   red: <BsCircle />,
@@ -77,7 +49,16 @@ export const roleToSignMap: { [key in CardRole]: Optional<ReactNode> } = {
 };
 
 export const parseRolesFromCSVString = (text: string): Array<CardRole> => {
-  return text.split(",") as Array<CardRole>;
+  const parsedValues = text.split(",") as Array<CardRole>;
+  const acceptedValues: Array<CardRole> = ["red", "blue", "black", "neutral"];
+
+  const wasParsingSuccessful = parsedValues.every((value) =>
+    acceptedValues.includes(value)
+  );
+  return wasParsingSuccessful ? parsedValues : [];
 };
+
+export const pickRandomly = <T,>(option1: T, option2: T): T =>
+  Math.random() > 0.5 ? option1 : option2;
 
 export const getNewWordCardSet = () => assignRoles(get25RandomWords(WORD_BANK));

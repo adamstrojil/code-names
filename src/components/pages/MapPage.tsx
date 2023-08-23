@@ -32,18 +32,17 @@ export function MapPage() {
   const [scannedText, setScannedText] = useState<Optional<string>>(null);
   const [isMapRevealed, setIsMapRevealed] = useState<boolean>(false);
   const { theme } = useTheme();
+
+  const scannedRoles = scannedText ? parseRolesFromCSVString(scannedText) : [];
+
   return (
     <MapPageContainer>
       <Box mb="32px">
         <ThemeButton />
       </Box>
-      {scannedText ? (
+      {scannedRoles.length ? (
         <>
-          {/* <HomepageLink /> */}
-          <GameMap
-            isMapRevealed={isMapRevealed}
-            rolesForRound={parseRolesFromCSVString(scannedText)}
-          />
+          <GameMap isMapRevealed={isMapRevealed} rolesForRound={scannedRoles} />
           {isMapRevealed ? (
             <Button
               onClick={() => {
@@ -59,10 +58,7 @@ export function MapPage() {
               <Box as="h2" css={{ color: "green", fontWeight: 300 }}>
                 Map Ready!
               </Box>
-              {/* <Box mt="1rem" display="flex" gap="8px">
-                <HomepageLink /> */}
               <Button onClick={() => setIsMapRevealed(true)}>Reveal Map</Button>
-              {/* </Box> */}
             </>
           )}
         </>
@@ -75,13 +71,6 @@ export function MapPage() {
           <QrScanner onScanResult={setScannedText} />
           <Box mt="1rem" display="flex" gap="8px">
             <HomepageLink />
-            {/* <Link to={"/board"}>
-              <TextWithIcon
-                text="Go to board"
-                icon={PiCardsDuotone}
-                gap="4px"
-              />
-            </Link> */}
           </Box>
         </>
       )}

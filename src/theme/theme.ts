@@ -6,8 +6,6 @@ import { colors } from "./colors";
 export type ThemeName = "dark" | "light";
 
 export type MyTheme = {
-  // blueTeam: string,
-  // redTeam: string,
   gameBackground: string;
   text: string;
   buttonBackground: string;
@@ -32,8 +30,6 @@ export type MyTheme = {
     text: string;
   };
   qr: {
-    // background: string;
-    // foreground: string;
     border: string;
   };
 };
@@ -64,8 +60,6 @@ const lightTheme: Theme = {
       text: colors.white,
     },
     qr: {
-      // background: colors.white,
-      // foreground: colors.black,
       border: colors.white,
     },
   },
@@ -79,17 +73,17 @@ const darkTheme: Theme = {
     successText: colors.japaneseLaurel,
     errorText: colors.red,
     card: {
-      line: `${colors.white}1a`,
+      line: `${colors.white}0d`,
       inversedText: colors.alot,
       text: colors.white,
-      textBackground: colors.shark,
-      hidden: colors.bistre,
+      textBackground: `${colors.white}0d`,
+      hidden: colors.transparent,
       neutral: colors.sharkLight,
       blue: colors.chathamsBlue,
       red: colors.darkTan,
       black: colors.black,
       shadow: colors.black,
-      border: `${colors.shadow}80`, //TODO refactor transparency
+      border: colors.sharkLight,
     },
     map: {
       border: colors.capeCod,
@@ -97,8 +91,6 @@ const darkTheme: Theme = {
       text: colors.alot,
     },
     qr: {
-      // background: colors.white,
-      // foreground: colors.black,
       border: colors.white,
     },
   },

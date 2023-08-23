@@ -18,4 +18,5 @@ export const colors = {
   white: "#ffffff",
   bistre: "#36291c",
   shadow: "#8e7754",
+  transparent: "transparent",
 }
