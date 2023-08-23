@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/code-words/static/css/main.33d372b8.css",
-    "main.js": "/code-words/static/js/main.e7f8a8a6.js",
+    "main.js": "/code-words/static/js/main.cf2208f4.js",
     "static/js/496.219a0753.chunk.js": "/code-words/static/js/496.219a0753.chunk.js",
-    "static/media/bystanderMale.png": "/code-words/static/media/bystanderMale.6ccec9d2be41e67515c2.png",
     "static/media/blueAgentFemale.png": "/code-words/static/media/blueAgentFemale.bc2df9f189c00875b604.png",
     "static/media/blueAgentMale.png": "/code-words/static/media/blueAgentMale.0fca23ba8cb5df592138.png",
-    "static/media/assassin.png": "/code-words/static/media/assassin.6bf00bfc633edc619ec6.png",
-    "static/media/bystanderFemale.png": "/code-words/static/media/bystanderFemale.69c80e979e0625837dd4.png",
+    "static/media/bystanderFemale.png": "/code-words/static/media/bystanderFemale.3f09a44f378da47dd143.png",
+    "static/media/bystanderMale.png": "/code-words/static/media/bystanderMale.1903edf7f755a0ae72dd.png",
     "static/media/map.png": "/code-words/static/media/map.ab0801ac739881b01f35.png",
+    "static/media/assassin.png": "/code-words/static/media/assassin.f0c939db65edb62941fd.png",
     "static/media/board.png": "/code-words/static/media/board.7d68ecfb6193643f99fb.png",
     "index.html": "/code-words/index.html",
     "main.33d372b8.css.map": "/code-words/static/css/main.33d372b8.css.map",
-    "main.e7f8a8a6.js.map": "/code-words/static/js/main.e7f8a8a6.js.map",
+    "main.cf2208f4.js.map": "/code-words/static/js/main.cf2208f4.js.map",
     "496.219a0753.chunk.js.map": "/code-words/static/js/496.219a0753.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.33d372b8.css",
-    "static/js/main.e7f8a8a6.js"
+    "static/js/main.cf2208f4.js"
   ]
 }
