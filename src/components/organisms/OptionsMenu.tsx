@@ -12,14 +12,14 @@ import { useTheme } from "../../theme/theme";
 import { IoIosArrowBack } from "react-icons/io";
 
 type Props = {
-  setWords: (words: Array<WordCard>) => void;
+  setWordCards: (words: Array<WordCard>) => void;
 };
 
 const languageSelectId = "languageSelect";
 const modeSelectId = "modeSelect";
 const themeSelectId = "themeSelect";
 
-export function OptionsMenu({ setWords }: Props) {
+export function OptionsMenu({ setWordCards }: Props) {
   const {
     updateContext,
     gameState: { gameVariant, language },
@@ -32,13 +32,12 @@ export function OptionsMenu({ setWords }: Props) {
         display="flex"
         justifyContent="center"
         css={{
-          flexDirection: "row",
           flexWrap: "wrap",
           alignItems: "center",
           gap: "10px",
         }}
       >
-        <Box css={{ display: "flex", flexDirection: "row", gap: "16px" }}>
+        <Box css={{ display: "flex", gap: "16px" }}>
         <Link to={"/"}>
             <TextWithIcon
               icon={IoIosArrowBack}
@@ -77,7 +76,7 @@ export function OptionsMenu({ setWords }: Props) {
             <ThemeSelect id={themeSelectId} />
           </Box>
           {/* <ThemeButton /> */}
-          <Button onClick={() => setWords(getNewWordCardSet())}>
+          <Button onClick={() => setWordCards(getNewWordCardSet())}>
             <TextWithIcon
               text="New Game"
               icon={MdOutlineRestartAlt}

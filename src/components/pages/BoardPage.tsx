@@ -2,8 +2,8 @@
 
 import styled from "@emotion/styled";
 import { useState } from "react";
-
 import { RxInfoCircled } from "react-icons/rx";
+
 import { getNewWordCardSet } from "../../lib/utils";
 import { WordCard } from "../../types";
 import { QrCode, TextWithIcon } from "../atoms";
@@ -20,13 +20,13 @@ const QrSectionContainer = styled.div({
 });
 
 export function BoardPage() {
-  const [words, setWords] = useState<Array<WordCard>>(getNewWordCardSet());
-  const rolesInCSVString = words.map(({ role }) => role).toString();
+  const [wordCards, setWordCards] = useState<Array<WordCard>>(getNewWordCardSet());
+  const rolesInCSVString = wordCards.map(({ role }) => role).toString();
 
   return (
     <>
-      <Board words={words} />
-      <OptionsMenu setWords={setWords} />
+      <Board wordCards={wordCards} setWordCards={setWordCards} />
+      <OptionsMenu setWordCards={setWordCards} />
       <QrSectionContainer>
         <QrCode text={rolesInCSVString} />
         <TextWithIcon

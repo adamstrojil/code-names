@@ -9,3 +9,4 @@ export { QrScanner } from "./QrScanner";
 export { Select } from "./Select";
 export { TextWithIcon } from "./TextWithIcon";
 export { Word } from "./Word";
+export { Overlay } from "./Overlay";

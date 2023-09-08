@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import styled, { CSSObject } from "@emotion/styled";
+
 import assassin from "../../assets/agentImages/assassin.png";
 import blueAgentFemale from "../../assets/agentImages/blueAgentFemale.png";
 import blueAgentMale from "../../assets/agentImages/blueAgentMale.png";
@@ -16,6 +17,8 @@ type Props = {
   cardRole: CardRole;
   gameVariant: GameVariant;
   language: Language;
+  cssAnimationShorthand?: string;
+  onRevealed?: (role: CardRole) => void;
 };
 
 const getRoleSpecificStyles = (
@@ -48,12 +51,15 @@ const getRoleSpecificStyles = (
 const StyledButtonCard = styled.button<{
   isRoleRevealed: boolean;
   cardRole: CardRole;
-}>(({ isRoleRevealed, cardRole, theme }) => {
+  cssAnimationShorthand?: string;
+}>(({ isRoleRevealed, cardRole, theme, cssAnimationShorthand }) => {
   const transition = "cubic-bezier(1, 0.01, 0.47, 0.99) 1s";
   const boxShadow = `0 4px 8px 0 ${theme.colors.card.shadow}32, 0 6px 20px 0 ${theme.colors.card.shadow}32`;
 
   return {
     transition,
+    opacity: cssAnimationShorthand ? 0 : 1, // Don't like how it's assumed here that animation will always start with 0 opacity
+    animation: cssAnimationShorthand,
     backgroundColor: theme.colors.card.hidden,
     color: theme.colors.card.text,
     display: "flex",
@@ -86,6 +92,7 @@ const StyledButtonCard = styled.button<{
       height: "100%",
       opacity: isRoleRevealed ? 1 : 0,
       zIndex: isRoleRevealed ? 1 : -1,
+      pointerEvents: "none",
       ...getRoleSpecificStyles(cardRole, isRoleRevealed),
     },
   };
@@ -113,6 +120,8 @@ export function Card({
   cardRole = "neutral",
   language,
   gameVariant,
+  cssAnimationShorthand,
+  onRevealed,
 }: Props) {
   const [isRoleRevealed, setIsRoleRevealed] = useState(false);
 
@@ -124,10 +133,14 @@ export function Card({
 
   return (
     <StyledButtonCard
+      cssAnimationShorthand={cssAnimationShorthand}
       cardRole={cardRole}
       disabled={isRoleRevealed}
       isRoleRevealed={isRoleRevealed}
-      onClick={() => setIsRoleRevealed(true)}
+      onClick={() => {
+        setIsRoleRevealed(true);
+        onRevealed?.(cardRole);
+      }}
     >
       <CardContentContainer isSingleMode={isSingleMode}>
         {!isSingleMode && (
