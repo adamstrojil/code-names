@@ -1,11 +1,15 @@
 /** @jsxImportSource @emotion/react */
 
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useEffect } from "react";
 import { RxInfoCircled } from "react-icons/rx";
 
-import { getNewWordCardSet } from "../../lib/utils";
-import { WordCard } from "../../types";
+import {
+  generateWordCards,
+  selectRolesInCSVString,
+  selectWordCards,
+} from "../../features/Game/gameSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { QrCode, TextWithIcon } from "../atoms";
 import { Board, OptionsMenu } from "../organisms";
 
@@ -20,13 +24,18 @@ const QrSectionContainer = styled.div({
 });
 
 export function BoardPage() {
-  const [wordCards, setWordCards] = useState<Array<WordCard>>(getNewWordCardSet());
-  const rolesInCSVString = wordCards.map(({ role }) => role).toString();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(generateWordCards());
+  }, []);
+
+  const rolesInCSVString = useAppSelector(selectRolesInCSVString);
 
   return (
     <>
-      <Board wordCards={wordCards} setWordCards={setWordCards} />
-      <OptionsMenu setWordCards={setWordCards} />
+      <Board />
+      <OptionsMenu />
       <QrSectionContainer>
         <QrCode text={rolesInCSVString} />
         <TextWithIcon
@@ -37,7 +46,7 @@ export function BoardPage() {
         />
 
         {/* <Box mt="1rem" display="flex" gap="8px"> */}
-          {/* <Link to={"/"}>
+        {/* <Link to={"/"}>
             <TextWithIcon
               icon={IoIosArrowBack}
               text="Main menu"
@@ -45,7 +54,7 @@ export function BoardPage() {
               gap="2px"
             />
           </Link> */}
-          {/* <Link to={"/map"}>
+        {/* <Link to={"/map"}>
             <TextWithIcon text="Scan map" icon={BiQrScan} />
           </Link> */}
         {/* </Box> */}

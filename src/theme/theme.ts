@@ -1,6 +1,9 @@
 import { Theme } from "@emotion/react";
-import { useContext } from "react";
-import { GameContext } from "../context/GameContext";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import {
+  changeTheme as changeThemeAction,
+  selectTheme,
+} from "../features/App/appSlice";
 import { colors } from "./colors";
 
 export type ThemeName = "dark" | "light";
@@ -102,17 +105,15 @@ const themeNametoTheme: { [key in ThemeName]: Theme } = {
 };
 
 export const useTheme = () => {
-  const {
-    gameState: { theme: themeName },
-    updateContext,
-  } = useContext(GameContext);
+  const themeName = useAppSelector(selectTheme);
+  const dispatch = useAppDispatch();
 
   const toggleTheme = () => {
-    updateContext({ theme: themeName === "light" ? "dark" : "light" });
+    dispatch(changeThemeAction(themeName === "light" ? "dark" : "light"));
   };
 
   const changeTheme = (themeName?: ThemeName) => {
-    themeName ? updateContext({ theme: themeName }) : toggleTheme();
+    themeName ? changeThemeAction(themeName) : toggleTheme();
   };
 
   return { theme: themeNametoTheme[themeName], changeTheme, themeName };

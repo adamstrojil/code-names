@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styled, { CSSObject } from "@emotion/styled";
 
@@ -17,72 +17,40 @@ type Props = {
   cardRole: CardRole;
   gameVariant: GameVariant;
   language: Language;
-  cssAnimationShorthand?: string;
-  onRevealed?: (role: CardRole) => void;
-};
-
-const getRoleSpecificStyles = (
-  role: CardRole,
-  isRevealed: boolean
-): CSSObject => {
-  const cardImageUrl =
-    role === "black"
-      ? assassin
-      : role === "neutral"
-      ? pickRandomly(bystanderMale, bystanderFemale)
-      : pickRandomly(blueAgentMale, blueAgentFemale);
-
-  const filter =
-    role === "red"
-      ? "hue-rotate(140deg) contrast(1.6) saturate(0.7)"
-      : undefined;
-
-  const scaleTransform = `scale(${isRevealed ? "1" : "2"})`;
-  const flipImageWhenRed = `scaleX(${role === "red" ? "-1" : "1"})`;
-  const rotateCardSlightly = `rotate(${Math.floor(Math.random() * 11) - 5}deg)`;
-
-  return {
-    filter,
-    backgroundImage: `url(${cardImageUrl})`,
-    transform: `${scaleTransform} ${flipImageWhenRed} ${rotateCardSlightly}`,
-  };
+  onRoleReveal: (role: CardRole) => void;
+  isDisabled: boolean;
 };
 
 const StyledButtonCard = styled.button<{
   isRoleRevealed: boolean;
   cardRole: CardRole;
-  cssAnimationShorthand?: string;
-}>(({ isRoleRevealed, cardRole, theme, cssAnimationShorthand }) => {
+  disabled: boolean;
+  roleSpecificStyles: CSSObject;
+}>(({ isRoleRevealed, roleSpecificStyles, theme, disabled }) => {
   const transition = "cubic-bezier(1, 0.01, 0.47, 0.99) 1s";
   const boxShadow = `0 4px 8px 0 ${theme.colors.card.shadow}32, 0 6px 20px 0 ${theme.colors.card.shadow}32`;
 
   return {
     transition,
-    opacity: cssAnimationShorthand ? 0 : 1, // Don't like how it's assumed here that animation will always start with 0 opacity
-    animation: cssAnimationShorthand,
+    transitionProperty: "box-shadow",
     backgroundColor: theme.colors.card.hidden,
     color: theme.colors.card.text,
     display: "flex",
-    position: "relative",
-    height: "16vh",
-    width: "18vw",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "auto",
+    height: "100%",
+    width: "100%",
     padding: 0,
     border: "none",
     borderRadius: "10px",
     boxShadow: isRoleRevealed ? "none" : boxShadow,
     "&:hover": {
-      cursor: isRoleRevealed ? "default" : "pointer",
+      cursor: disabled ? "default" : "pointer",
     },
     "&:before": {
       boxShadow,
       transition,
       content: '""',
-      transitionProperty: "transform, background-color, opacity",
-      willChange: "transform, background-color, opacity",
+      transitionProperty: "transform, background-color, opacity, scale",
+      willChange: "transform, background-color, opacity, scale",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "top center",
@@ -90,10 +58,11 @@ const StyledButtonCard = styled.button<{
       position: "absolute",
       width: "100%",
       height: "100%",
+      pointerEvents: "none",
+      scale: isRoleRevealed ? "1" : "2",
       opacity: isRoleRevealed ? 1 : 0,
       zIndex: isRoleRevealed ? 1 : -1,
-      pointerEvents: "none",
-      ...getRoleSpecificStyles(cardRole, isRoleRevealed),
+      ...roleSpecificStyles,
     },
   };
 });
@@ -115,15 +84,44 @@ const CardContentContainer = styled.span<{ isSingleMode: boolean }>(
   })
 );
 
+const getRoleSpecificStyles = (role: CardRole): CSSObject => {
+  const cardImageUrl =
+    role === "black"
+      ? assassin
+      : role === "neutral"
+      ? pickRandomly(bystanderMale, bystanderFemale)
+      : pickRandomly(blueAgentMale, blueAgentFemale);
+
+  const filter =
+    role === "red"
+      ? "hue-rotate(140deg) contrast(1.6) saturate(0.7)"
+      : undefined;
+
+  const flipImageWhenRed = `scaleX(${role === "red" ? "-1" : "1"})`;
+  const randomRotationDegree = `${Math.floor(Math.random() * 11) - 5}deg`;
+
+  return {
+    filter,
+    transform: flipImageWhenRed,
+    rotate: randomRotationDegree,
+    backgroundImage: `url(${cardImageUrl})`,
+  };
+};
+
 export function Card({
   word: wordObject,
-  cardRole = "neutral",
+  cardRole,
   language,
   gameVariant,
-  cssAnimationShorthand,
-  onRevealed,
+  onRoleReveal,
+  isDisabled,
 }: Props) {
   const [isRoleRevealed, setIsRoleRevealed] = useState(false);
+  const [roleSpecificStyles, setRoleSpecificStyles] = useState<CSSObject>({});
+
+  useEffect(() => {
+    setRoleSpecificStyles(getRoleSpecificStyles(cardRole));
+  }, [cardRole]);
 
   const isMirroredMode = gameVariant === "mirrored";
   const isDuolingoMode = gameVariant === "duolingo";
@@ -133,14 +131,14 @@ export function Card({
 
   return (
     <StyledButtonCard
-      cssAnimationShorthand={cssAnimationShorthand}
       cardRole={cardRole}
-      disabled={isRoleRevealed}
+      disabled={isRoleRevealed || isDisabled}
       isRoleRevealed={isRoleRevealed}
       onClick={() => {
         setIsRoleRevealed(true);
-        onRevealed?.(cardRole);
+        onRoleReveal(cardRole);
       }}
+      roleSpecificStyles={roleSpecificStyles}
     >
       <CardContentContainer isSingleMode={isSingleMode}>
         {!isSingleMode && (

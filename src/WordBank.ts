@@ -1035,7 +1035,7 @@ export const WORD_BANK = [
     default: "Plastic",
     english: "Plastic",
     turkish: "Plastik",
-    czech: "Plastický",
+    czech: "Plast",
   },
   {
     default: "Dwarf",

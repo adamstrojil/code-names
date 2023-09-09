@@ -26,7 +26,7 @@ export function ThemeSelect({ id }: Props) {
       id={id}
       options={OPTIONS}
       selectedOption={themeName}
-      onChange={changeTheme}
+      onChange={() => changeTheme()}
     />
   );
 }

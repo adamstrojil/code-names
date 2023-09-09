@@ -10,15 +10,16 @@ type Props = {
   gap?: string;
   css?: CSSObject;
   as?: ElementType;
+  color?: string
 };
 
-const StyledSpan = styled.span<Partial<Props>>(({ gap, theme }) => ({
+const StyledSpan = styled.span<Partial<Props>>(({ gap, color, theme }) => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "center",
   gap,
-  color: theme.colors.text,
+  color: color || theme.colors.text,
 }));
 
 export function TextWithIcon({

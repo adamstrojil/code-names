@@ -1,155 +1,85 @@
-/** @jsxImportSource @emotion/react */
-
-import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useContext, useEffect, useMemo, useReducer, useState } from "react";
 
-import { GameContext } from "../../context/GameContext";
-import { getNewWordCardSet } from "../../lib/utils";
-import { Optional, TeamColor, WordCard } from "../../types";
-import { Box, Button, Overlay } from "../atoms";
-import { Card } from "../molecules";
-
-type Props = {
-  wordCards: Array<WordCard>;
-  setWordCards: (words: Array<WordCard>) => void;
-};
+import {
+  restartGame,
+  selectGameState,
+  setIsFinished,
+  updateScore,
+} from "../../features/Game/gameSlice";
+import { isTeamColor, scrollToTop } from "../../lib/utils";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { WordCard } from "../../types";
+import {
+  Card,
+  GameResultOverlay,
+  QrCodeOverlay,
+  Transition,
+} from "../molecules";
 
 const BoardContainer = styled.div({
   display: "flex",
   flexWrap: "wrap",
   height: "100vh",
   overflowX: "clip",
-  //overflowY: "hidden",
+});
+
+const BoardItem = styled.div({
+  display: "flex",
+  position: "relative",
+  height: "16vh",
+  width: "18vw",
+  flexDirection: "column",
+  margin: "auto",
 });
 
 const CARD_ANIMATION_BASE_DELAY_MS = 30;
-const CARD_ANIMATION = keyframes`
-from {
-  opacity: 0;
-  transform: scale(1.1);
-}
-to {
-  opacity: 1;
-  transform: scale(1);
-}
-`;
 
-type State = {
-  redLeft: number;
-  blueLeft: number;
-};
+export function Board() {
+  const {
+    variant: gameVariant,
+    language: gameLanguage,
+    winner,
+    isFinished,
+    wordCards,
+  } = useAppSelector(selectGameState);
 
-type Action = { type: "UPDATE_COUNT"; payload: TeamColor } | { type: "INIT" };
-
-const reducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case "UPDATE_COUNT":
-      return {
-        ...state,
-        ...(action.payload === "red"
-          ? { redLeft: state.redLeft - 1 }
-          : { blueLeft: state.blueLeft - 1 }),
-      };
-    case "INIT":
-      return {
-        ...initialState,
-      };
-    default:
-      return state;
-  }
-};
-
-// Define the initial state
-const initialState: State = {
-  redLeft: 9,
-  blueLeft: 8,
-};
-
-export function Board({ wordCards, setWordCards }: Props) {
-  const { gameVariant, language } = useContext(GameContext).gameState;
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
-  const [winner, setWinner] = useState<Optional<TeamColor>>(null);
-  const [currentGameState, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    if (currentGameState.blueLeft === 0) {
-      setWinner("blue");
-      setIsOverlayVisible(true);
-    } else if (currentGameState.redLeft === 0) {
-      setWinner("red");
-      setIsOverlayVisible(true);
-    } else {
-      setWinner(null);
-    }
-    // return () => setIsOverlayVisible(false);
-  }, [currentGameState.blueLeft, currentGameState.redLeft]);
-
-  const updateCardCount = (role: TeamColor) => {
-    dispatch({ type: "UPDATE_COUNT", payload: role });
-  };
-
-  const children = useMemo(
-    () => (
-      <BoardContainer>
-        {wordCards.map(({ word, role }, index) => {
-          const flowAnimationDelayMs = CARD_ANIMATION_BASE_DELAY_MS * index;
-          const cardCssAnimationShorthand = `${CARD_ANIMATION} 300ms ease-in-out ${flowAnimationDelayMs}ms forwards`;
-          return (
-            <Card
-              onRevealed={(role) => {
-                role === "black"
-                  ? setIsOverlayVisible(true)
-                  : role !== "neutral"
-                  ? updateCardCount(role)
-                  : null;
-              }}
-              cssAnimationShorthand={cardCssAnimationShorthand}
-              key={word.english + index + role}
-              word={word}
-              cardRole={role}
-              gameVariant={gameVariant}
-              language={language}
-            />
-          );
-        })}
-      </BoardContainer>
-    ),
-    [wordCards,gameVariant,language]
-  );
+  const dispatch = useAppDispatch();
 
   return (
-    <>
-      {children}
-      <Overlay isOpen={isOverlayVisible}>
-        <h1
-          style={{
-            fontSize: "10rem",
-            color: "white",
-            textTransform: "uppercase",
-          }}
-        >
-          {winner ? `Team ${winner} won!` : "game over!"}
-        </h1>
-        <Box css={{ display: "flex", gap: "16px", justifyContent: "center" }}>
-          <Button
-            onClick={() => {
-              setIsOverlayVisible(false);
-            }}
-          >
-            Dismiss
-          </Button>
-          <Button
-            onClick={() => {
-              setIsOverlayVisible(false);
-              setWordCards(getNewWordCardSet());
-              dispatch({ type: "INIT" });
-            }}
-          >
-            New Game
-          </Button>
-        </Box>
-      </Overlay>
-    </>
+    <BoardContainer>
+      {wordCards.map(({ word, role, id }, index) => {
+        return (
+          <BoardItem key={id}>
+            <Transition
+              delay={CARD_ANIMATION_BASE_DELAY_MS * index}
+              otherStyles={{ width: "100%", height: "100%" }}
+            >
+              <Card
+                word={word}
+                cardRole={role}
+                isDisabled={isFinished}
+                onRoleReveal={(role) => {
+                  isTeamColor(role)
+                    ? dispatch(updateScore({ role }))
+                    : role === "black"
+                    ? dispatch(setIsFinished(true))
+                    : undefined;
+                }}
+                gameVariant={gameVariant}
+                language={gameLanguage}
+              />
+            </Transition>
+          </BoardItem>
+        );
+      })}
+      <QrCodeOverlay text={"scan for the map"} />
+      <GameResultOverlay
+        text={winner ? `team ${winner} wins!` : "game over!"}
+        onNewGameButtonClick={() => {
+          dispatch(restartGame());
+          scrollToTop();
+        }}
+      />
+    </BoardContainer>
   );
 }

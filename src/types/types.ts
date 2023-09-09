@@ -11,6 +11,7 @@ export type GameVariant = "single" | "mirrored" | "duolingo";
 export type Language = "english" | "czech" | "turkish";
 
 export type WordCard = {
+  id: string;
   word: Word;
   role: CardRole;
 };

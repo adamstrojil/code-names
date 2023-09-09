@@ -1,15 +1,15 @@
 import React, { ReactNode, useEffect, useRef } from "react";
 
 type Props = {
-  isOpen: boolean;
+  isVisible: boolean;
   children: ReactNode;
 };
 
-export const Overlay = ({ isOpen, children }: Props) => {
+export const Overlay = ({ isVisible, children }: Props) => {
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isVisible) {
       const timeoutId = setTimeout(() => {
         if (overlayRef.current) {
           overlayRef.current.style.opacity = "1";
@@ -17,18 +17,18 @@ export const Overlay = ({ isOpen, children }: Props) => {
       }, 1000);
       return () => clearTimeout(timeoutId);
     }
-  }, [isOpen]);
+  }, [isVisible]);
 
   const overlayStyles = {
     overlay: {
       opacity: 0,
-      transition: "opacity 1s linear",
+      transition: "opacity 500ms linear",
       position: "fixed" as const,
       top: 0,
       left: 0,
       width: "100%",
       height: "100%",
-      backgroundColor: "rgba(0, 0, 0, 0.7)",
+      backgroundColor: "rgba(0, 0, 0, 0.85)",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -43,7 +43,7 @@ export const Overlay = ({ isOpen, children }: Props) => {
     },
   };
 
-  return isOpen ? (
+  return isVisible ? (
     <div ref={overlayRef} style={{ ...overlayStyles.overlay }}>
       <div style={overlayStyles.overlayContent}>{children}</div>
     </div>

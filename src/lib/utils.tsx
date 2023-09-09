@@ -1,10 +1,10 @@
+import { Theme } from "@emotion/react";
 import { ReactNode } from "react";
-import { ImCross } from "react-icons/im";
 import { BsCircle } from "react-icons/bs";
+import { ImCross } from "react-icons/im";
 
 import { WORD_BANK } from "../WordBank";
-import { CardRole, Optional, Word, WordCard } from "../types/types";
-import { Theme } from "@emotion/react";
+import { CardRole, Optional, TeamColor, Word, WordCard } from "../types/types";
 
 const get25RandomWords = (wordBank: Array<Word>): Array<Word> =>
   wordBank.sort(() => Math.random() - 0.5).slice(0, 25);
@@ -12,6 +12,7 @@ const get25RandomWords = (wordBank: Array<Word>): Array<Word> =>
 const assignRoles = (words: Array<Word>): Array<WordCard> => {
   const assigned = words.map((word, index) => {
     return {
+      id: crypto.randomUUID(),
       word,
       role:
         index <= 8
@@ -62,3 +63,14 @@ export const pickRandomly = <T,>(option1: T, option2: T): T =>
   Math.random() > 0.5 ? option1 : option2;
 
 export const getNewWordCardSet = () => assignRoles(get25RandomWords(WORD_BANK));
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function isTeamColor(value: any): value is TeamColor {
+  return value === "red" || value === "blue";
+}
+
+export const scrollToTop = () =>
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });

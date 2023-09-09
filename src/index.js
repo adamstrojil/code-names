@@ -1,21 +1,21 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 
+import { store } from "./redux/store";
 import { App } from "./components/pages";
-import { GameContextProvider } from "./context/GameContext";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-
 const container = document.getElementById("root");
-const root = createRoot(container); 
+const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <HashRouter>
-      <GameContextProvider>
+      <Provider store={store}>
         <App />
-      </GameContextProvider>
+      </Provider>
     </HashRouter>
   </React.StrictMode>
 );
