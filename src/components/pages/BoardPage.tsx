@@ -6,8 +6,7 @@ import { RxInfoCircled } from "react-icons/rx";
 
 import {
   generateWordCards,
-  selectRolesInCSVString,
-  selectWordCards,
+  selectRolesInCSVString
 } from "../../features/Game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { QrCode, TextWithIcon } from "../atoms";

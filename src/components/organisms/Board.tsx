@@ -8,7 +8,6 @@ import {
 } from "../../features/Game/gameSlice";
 import { isTeamColor, scrollToTop } from "../../lib/utils";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { WordCard } from "../../types";
 import {
   Card,
   GameResultOverlay,
