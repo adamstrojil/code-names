@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/code-words/static/css/main.1a610618.css",
-    "main.js": "/code-words/static/js/main.9d52f1d2.js",
+    "main.js": "/code-words/static/js/main.e8a5f3fc.js",
     "static/js/496.219a0753.chunk.js": "/code-words/static/js/496.219a0753.chunk.js",
     "static/media/blueAgentFemale.png": "/code-words/static/media/blueAgentFemale.bc2df9f189c00875b604.png",
     "static/media/blueAgentMale.png": "/code-words/static/media/blueAgentMale.0fca23ba8cb5df592138.png",
@@ -12,11 +12,11 @@
     "static/media/board.png": "/code-words/static/media/board.7d68ecfb6193643f99fb.png",
     "index.html": "/code-words/index.html",
     "main.1a610618.css.map": "/code-words/static/css/main.1a610618.css.map",
-    "main.9d52f1d2.js.map": "/code-words/static/js/main.9d52f1d2.js.map",
+    "main.e8a5f3fc.js.map": "/code-words/static/js/main.e8a5f3fc.js.map",
     "496.219a0753.chunk.js.map": "/code-words/static/js/496.219a0753.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1a610618.css",
-    "static/js/main.9d52f1d2.js"
+    "static/js/main.e8a5f3fc.js"
   ]
 }
