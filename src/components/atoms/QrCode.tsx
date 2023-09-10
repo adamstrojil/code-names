@@ -3,17 +3,22 @@ import { useTheme } from "../../theme/theme";
 
 type Props = {
   text: string;
-  size?: number;
+  size?: string;
+  borderSize?: string;
 };
 
-export function QrCode({ text, size = 250 }: Props) {
+export function QrCode({ text, size = "40vh", borderSize = "16px" }: Props) {
   const { theme } = useTheme();
 
   return (
     <QRCodeSVG
       value={text}
-      size={size}
-      style={{ border: `16px solid ${theme.colors.qr.border}` }}
+      style={{
+        boxSizing: "border-box",
+        border: `${borderSize} solid ${theme.colors.qr.border}`,
+        width: size,
+        height: size,
+      }}
     />
   );
 }

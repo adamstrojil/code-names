@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { RxInfoCircled } from "react-icons/rx";
+import { IoIosArrowForward } from "react-icons/io";
 
 import {
   selectIsFinished,
@@ -15,58 +16,98 @@ type Props = {
 };
 
 const FADE_OUT_DURATION_MS = 1000;
+const TRANSITON_START_STYLES = {
+  overlayOpacity: 1,
+  qrCodeTopPosition: "0px",
+};
+const TRANSITON_END_STYLES = {
+  overlayOpacity: 0,
+  qrCodeTopPosition: "1000px",
+};
 
 export function QrCodeOverlay({ text }: Props) {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
   const rolesInCSVString = useAppSelector(selectRolesInCSVString);
   const isGameFinished = useAppSelector(selectIsFinished);
-  const [opacity, setOpacity] = useState(1);
+  const [stylesForTransition, setStylesForTransition] = useState(
+    TRANSITON_START_STYLES
+  );
 
   useEffect(() => {
     if (!isGameFinished) {
       setIsOverlayVisible(true);
-      setOpacity(1);
+      setStylesForTransition(TRANSITON_START_STYLES);
     }
   }, [isGameFinished, rolesInCSVString]);
 
   const fadeOutAndCloseOverlay = () => {
-    setOpacity(0);
+    setStylesForTransition(TRANSITON_END_STYLES);
     setTimeout(() => {
       setIsOverlayVisible(false);
     }, FADE_OUT_DURATION_MS);
   };
 
   return (
-    <Box css={{ opacity, transition: `opacity ${FADE_OUT_DURATION_MS}ms` }}>
+    <Box
+      css={{
+        opacity: stylesForTransition.overlayOpacity,
+        transition: `opacity ${FADE_OUT_DURATION_MS}ms`,
+      }}
+    >
       <Overlay isVisible={isOverlayVisible}>
-        <h1
-          style={{
-            fontSize: "5rem",
-            color: "white",
-            textTransform: "uppercase",
-          }}
-        >
-          {text}
-        </h1>
         <Box
+          display="flex"
           css={{
-            display: "flex",
             flexDirection: "column",
-            gap: "16px",
             alignItems: "center",
+            justifyContent: "center",
+            gap: "3vh",
           }}
         >
-          <QrCode size={500} text={rolesInCSVString} />
-          <TextWithIcon
-            css={{ fontSize: "1rem" }}
-            color={"white"}
-            text={"Currently only scanner from this page is supported."}
-            icon={RxInfoCircled}
-            iconPlacement="left"
-          />
-          <Box mt="32px">
-            <Button onClick={fadeOutAndCloseOverlay}>We&apos;re ready!</Button>
+          <h1
+            style={{
+              fontSize: "7vh",
+              lineHeight: "7vh",
+              color: "white",
+              textTransform: "uppercase",
+              margin: 0,
+            }}
+          >
+            {text}
+          </h1>
+          <Box
+            css={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1vh",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                transition: "top 1s",
+                position: "relative",
+                top: stylesForTransition.qrCodeTopPosition,
+              }}
+            >
+              <QrCode borderSize="1vh" text={rolesInCSVString} />
+            </div>
+            <TextWithIcon
+              css={{ fontSize: "1rem" }}
+              color={"white"}
+              text={"Currently only scanner from this page is supported."}
+              icon={RxInfoCircled}
+              iconPlacement="left"
+            />
           </Box>
+          <Button onClick={fadeOutAndCloseOverlay}>
+            <TextWithIcon
+              icon={IoIosArrowForward}
+              text="We're ready"
+              iconPlacement="right"
+              gap="2px"
+            />
+          </Button>
         </Box>
       </Overlay>
     </Box>
