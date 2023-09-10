@@ -5,6 +5,10 @@ import { ImCross } from "react-icons/im";
 
 import { WORD_BANK } from "../WordBank";
 import { CardRole, Optional, TeamColor, Word, WordCard } from "../types/types";
+import {
+  URL_DATA_MAP_PAGE_LINK,
+  QR_LINK_DATA_PARAM_NAME,
+} from "../features/Game/constants";
 
 const get25RandomWords = (wordBank: Array<Word>): Array<Word> =>
   wordBank.sort(() => Math.random() - 0.5).slice(0, 25);
@@ -74,3 +78,9 @@ export const scrollToTop = () =>
     top: 0,
     behavior: "smooth",
   });
+
+export const buildLinkToURLDataMap = (encodedRoles: string) => {
+  const baseUrl = `${window.location.origin}${window.location.pathname}`;
+
+  return `${baseUrl}#${URL_DATA_MAP_PAGE_LINK}?${QR_LINK_DATA_PARAM_NAME}=${encodedRoles}`;
+};

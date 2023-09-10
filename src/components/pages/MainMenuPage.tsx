@@ -1,13 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
 import styled from "@emotion/styled";
-import { PiWarning } from "react-icons/pi";
+import { useMediaQuery } from "react-responsive";
 import boardImg from "../../assets/board.png";
 import mapImg from "../../assets/map.png";
-import { Box, MainMenuLink, TextWithIcon } from "../atoms";
 import { useTheme } from "../../theme/theme";
+import { Box, MainMenuLink } from "../atoms";
 import { ThemeButton } from "../molecules";
-import { useMediaQuery } from "react-responsive";
 
 const CenteredContainer = styled.div({
   display: "flex",

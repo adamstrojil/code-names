@@ -1,18 +1,16 @@
 /** @jsxImportSource @emotion/react */
 
 import { useEffect, useState } from "react";
-import { RxInfoCircled } from "react-icons/rx";
 import { IoIosArrowForward } from "react-icons/io";
 
-import {
-  selectIsFinished,
-  selectRolesInCSVString,
-} from "../../features/Game/gameSlice";
+import { selectIsFinished } from "../../features/Game/gameSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { Box, Button, Overlay, QrCode, TextWithIcon } from "../atoms";
+import { ScannerInfoText } from "./ScannerInfoText";
 
 type Props = {
-  text: string;
+  displayText: string;
+  qrCodeText: string;
 };
 
 const FADE_OUT_DURATION_MS = 1000;
@@ -25,9 +23,8 @@ const TRANSITON_END_STYLES = {
   qrCodeTopPosition: "1000px",
 };
 
-export function QrCodeOverlay({ text }: Props) {
+export function QrCodeOverlay({ displayText, qrCodeText }: Props) {
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
-  const rolesInCSVString = useAppSelector(selectRolesInCSVString);
   const isGameFinished = useAppSelector(selectIsFinished);
   const [stylesForTransition, setStylesForTransition] = useState(
     TRANSITON_START_STYLES
@@ -38,7 +35,7 @@ export function QrCodeOverlay({ text }: Props) {
       setIsOverlayVisible(true);
       setStylesForTransition(TRANSITON_START_STYLES);
     }
-  }, [isGameFinished, rolesInCSVString]);
+  }, [isGameFinished, qrCodeText]);
 
   const fadeOutAndCloseOverlay = () => {
     setStylesForTransition(TRANSITON_END_STYLES);
@@ -73,7 +70,7 @@ export function QrCodeOverlay({ text }: Props) {
               margin: 0,
             }}
           >
-            {text}
+            {displayText}
           </h1>
           <Box
             css={{
@@ -90,15 +87,9 @@ export function QrCodeOverlay({ text }: Props) {
                 top: stylesForTransition.qrCodeTopPosition,
               }}
             >
-              <QrCode borderSize="1vh" text={rolesInCSVString} />
+              <QrCode borderSize="1vh" text={qrCodeText} />
             </div>
-            <TextWithIcon
-              css={{ fontSize: "1rem" }}
-              color={"white"}
-              text={"Currently only scanner from this page is supported."}
-              icon={RxInfoCircled}
-              iconPlacement="left"
-            />
+            <ScannerInfoText color="white" />
           </Box>
           <Button onClick={fadeOutAndCloseOverlay}>
             <TextWithIcon

@@ -4,17 +4,18 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { BiQrScan } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
+
+import { QR_LINK_DATA_PARAM_NAME } from "../../features/Game/constants";
 import { parseRolesFromCSVString } from "../../lib/utils";
+import { useTheme } from "../../theme/theme";
 import { Optional } from "../../types";
 import { Box, Button, Link, QrScanner, TextWithIcon } from "../atoms";
 import { GameMap, ThemeButton } from "../molecules";
-import { useTheme } from "../../theme/theme";
 
 const MapPageContainer = styled.div({
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
-  // marginTop: "10px",
 });
 
 const HomepageLink = () => (
@@ -33,16 +34,21 @@ export function MapPage() {
   const [isMapRevealed, setIsMapRevealed] = useState<boolean>(false);
   const { theme } = useTheme();
 
-  const scannedRoles = scannedText ? parseRolesFromCSVString(scannedText) : [];
+  const parsedBase64Data = scannedText
+    ? scannedText.split(`${QR_LINK_DATA_PARAM_NAME}=`)[1]
+    : null;
+  const roles = parsedBase64Data
+    ? parseRolesFromCSVString(atob(parsedBase64Data))
+    : [];
 
   return (
     <MapPageContainer>
       <Box mb="32px">
         <ThemeButton />
       </Box>
-      {scannedRoles.length ? (
+      {roles.length ? (
         <>
-          <GameMap isMapRevealed={isMapRevealed} rolesForRound={scannedRoles} />
+          <GameMap isMapRevealed={isMapRevealed} rolesForRound={roles} />
           {isMapRevealed ? (
             <Button
               onClick={() => {

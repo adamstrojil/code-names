@@ -2,14 +2,21 @@
 
 import styled from "@emotion/styled";
 import { useEffect } from "react";
-import { RxInfoCircled } from "react-icons/rx";
 
 import {
   generateWordCards,
-  selectRolesInCSVString
+  restartGame,
+  selectRolesInBase64CSVString,
+  selectWinner,
 } from "../../features/Game/gameSlice";
+import { buildLinkToURLDataMap, scrollToTop } from "../../lib/utils";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { QrCode, TextWithIcon } from "../atoms";
+import { QrCode } from "../atoms";
+import {
+  GameResultOverlay,
+  QrCodeOverlay,
+  ScannerInfoText,
+} from "../molecules";
 import { Board, OptionsMenu } from "../organisms";
 
 const QrSectionContainer = styled.div({
@@ -29,35 +36,29 @@ export function BoardPage() {
     dispatch(generateWordCards());
   }, []);
 
-  const rolesInCSVString = useAppSelector(selectRolesInCSVString);
+  const winner = useAppSelector(selectWinner);
+  const rolesInCSVString = useAppSelector(selectRolesInBase64CSVString);
+  const qrCodeLinkWithRoles = buildLinkToURLDataMap(rolesInCSVString);
 
   return (
     <>
       <Board />
       <OptionsMenu />
       <QrSectionContainer>
-        <QrCode text={rolesInCSVString} />
-        <TextWithIcon
-          css={{ fontSize: "0.9rem" }}
-          text={"Currently only scanner from this page is supported."}
-          icon={RxInfoCircled}
-          iconPlacement="left"
-        />
-
-        {/* <Box mt="1rem" display="flex" gap="8px"> */}
-        {/* <Link to={"/"}>
-            <TextWithIcon
-              icon={IoIosArrowBack}
-              text="Main menu"
-              iconPlacement="left"
-              gap="2px"
-            />
-          </Link> */}
-        {/* <Link to={"/map"}>
-            <TextWithIcon text="Scan map" icon={BiQrScan} />
-          </Link> */}
-        {/* </Box> */}
+        <QrCode text={qrCodeLinkWithRoles} />
+        <ScannerInfoText />
       </QrSectionContainer>
+      <QrCodeOverlay
+        displayText={"scan for the map"}
+        qrCodeText={qrCodeLinkWithRoles}
+      />
+      <GameResultOverlay
+        text={winner ? `team ${winner} wins!` : "game over!"}
+        onNewGameButtonClick={() => {
+          dispatch(restartGame());
+          scrollToTop();
+        }}
+      />
     </>
   );
 }

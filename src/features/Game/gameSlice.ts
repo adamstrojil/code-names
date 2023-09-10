@@ -104,7 +104,7 @@ export const selectIsFinished = (state: RootState) => state.game.isFinished;
 export const selectWinner = (state: RootState) => state.game.winner;
 export const selectStartingColor = (state: RootState) =>
   state.game.startingColor;
-export const selectRolesInCSVString = (state: RootState) =>
-  state.game.wordCards.map(({ role }) => role).toString();
+export const selectRolesInBase64CSVString = (state: RootState) =>
+  btoa(state.game.wordCards.map(({ role }) => role).toString());
 
 export default gameSlice.reducer;

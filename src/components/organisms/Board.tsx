@@ -1,18 +1,15 @@
 import styled from "@emotion/styled";
 
 import {
-  restartGame,
   selectGameState,
   setIsFinished,
-  updateScore,
+  updateScore
 } from "../../features/Game/gameSlice";
-import { isTeamColor, scrollToTop } from "../../lib/utils";
+import { isTeamColor } from "../../lib/utils";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   Card,
-  GameResultOverlay,
-  QrCodeOverlay,
-  Transition,
+  Transition
 } from "../molecules";
 
 const BoardContainer = styled.div({
@@ -37,7 +34,6 @@ export function Board() {
   const {
     variant: gameVariant,
     language: gameLanguage,
-    winner,
     isFinished,
     wordCards,
   } = useAppSelector(selectGameState);
@@ -71,14 +67,6 @@ export function Board() {
           </BoardItem>
         );
       })}
-      <QrCodeOverlay text={"scan for the map"} />
-      <GameResultOverlay
-        text={winner ? `team ${winner} wins!` : "game over!"}
-        onNewGameButtonClick={() => {
-          dispatch(restartGame());
-          scrollToTop();
-        }}
-      />
     </BoardContainer>
   );
 }
